@@ -9,6 +9,7 @@
   "private": false,
   "scripts": {
     "test": "say 'nothing is set'",
+    "lint": "eslint .",
     "start": "webpack serve --port 3000",
     "build": "NODE_ENV=production webpack",
     "prepare": "husky install"
@@ -21,11 +22,19 @@
   },
   "devDependencies": {
     "@types/react-dom": "^18.2.6",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
     "css-loader": "^6.8.1",
+    "eslint": "^8.44.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.5.3",
     "husky": "^8.0.3",
     "mini-css-extract-plugin": "^2.7.6",
+    "node-sass": "^9.0.0",
     "prettier": "2.8.8",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
     "ts-loader": "^9.4.4",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4",
