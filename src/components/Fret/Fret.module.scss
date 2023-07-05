@@ -1,4 +1,15 @@
 .fret-container{
+  border: 1px solid grey;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
   .fret-label{
+    text-align: center;
+  }
+  .tonic{
+    background-color: forestgreen;
+  }
+  .chromatic{
+    background-color: brown;
   }
 }

@@ -1,5 +1,6 @@
 import { FretInfo } from './FretInfo';
 import { Pitches } from '../constants/Pitches';
+import { ScaleInfo } from '../constants/ScaleInfo';
 
 export class StringInfo {
   fretCount: number;
@@ -44,10 +45,19 @@ export class StringInfo {
             pitchClass: Pitches[pitchTracker],
           };
           this.frets.push(newFret);
-          console.log(this.frets);
         }
       }
     }
     this.built = true;
+  }
+  setScale(intervals: number[]) {
+    for (let f = 0; f < this.frets.length; f++) {
+      const check = intervals.indexOf(this.frets[f].pitchClass.integerNotation);
+      if (check > -1) {
+        this.frets[f].scaleInfo = ScaleInfo.Tonic;
+      } else {
+        this.frets[f].scaleInfo = ScaleInfo.Chromatic;
+      }
+    }
   }
 }

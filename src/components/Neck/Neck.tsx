@@ -8,9 +8,15 @@ interface NeckProperties {
   tuning: FretInfo[];
   neckStrings: StringInfo[];
   fretCount: number;
+  scale: number[];
 }
 
-const Neck: React.FC<NeckProperties> = ({ tuning, fretCount, neckStrings }) => {
+const Neck: React.FC<NeckProperties> = ({
+  tuning,
+  fretCount,
+  neckStrings,
+  scale,
+}) => {
   if (neckStrings.length === 0) {
     tuning.forEach((item) => {
       const aStringInfoHolder = new StringInfo(
@@ -19,6 +25,7 @@ const Neck: React.FC<NeckProperties> = ({ tuning, fretCount, neckStrings }) => {
         item.pitchClass.aliases[0]
       );
       aStringInfoHolder.buildString();
+      aStringInfoHolder.setScale(scale);
       neckStrings.push(aStringInfoHolder);
     });
   }
