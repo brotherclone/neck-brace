@@ -1,0 +1,11 @@
+.string-container{
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  .string-inner{
+    border: 1px solid red;
+    .string-name{
+      border: 1px solid red;
+    }
+  }
+}

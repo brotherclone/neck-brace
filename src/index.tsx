@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Neck from './components/Neck/Neck';
-import { standardTuningGuitar } from './models/GuitarStrings';
-import { StandardGuitarTotalFrets } from './constants/Constants';
-
+import { StandardGuitarTuning } from './constants/GuitarTunings';
+import { StandardGuitarFretCount } from './constants/GuitarFrets';
 import './index.scss';
 
 ReactDOM.render(
   <div>
-    <Neck tuning={standardTuningGuitar} fretCount={StandardGuitarTotalFrets} />
+    <Neck
+      tuning={StandardGuitarTuning}
+      fretCount={StandardGuitarFretCount}
+      neckStrings={[]}
+    />
   </div>,
   document.getElementById('app-root')
 );
