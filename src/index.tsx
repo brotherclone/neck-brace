@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Neck from './components/Neck/Neck';
 import { StandardGuitarTuning } from './constants/GuitarTunings';
 import { StandardGuitarFretCount } from './constants/GuitarFrets';
-import { MajorScales } from './constants/Scales';
+import { AllScales } from './constants/Scales';
 import './index.scss';
 
 ReactDOM.render(
@@ -12,7 +12,7 @@ ReactDOM.render(
       tuning={StandardGuitarTuning}
       fretCount={StandardGuitarFretCount}
       neckStrings={[]}
-      scale={MajorScales[1]}
+      scale={AllScales[0]}
     />
   </div>,
   document.getElementById('app-root')

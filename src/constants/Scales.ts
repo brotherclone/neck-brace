@@ -1,6 +1,8 @@
-import { Major } from './ScaleInvervals';
-import { Minor } from './ScaleInvervals';
+import { AllScaleTypes } from './ScaleInvervals';
 import { Pitches } from './Pitches';
+import { Scale } from '../types/Scale';
+import { ScaleType } from '../types/ScaleType';
+import { PitchClass } from '../types/PitchClass';
 
 function nextPitch(previous: number, interval: number): number {
   if (previous + interval < Pitches.length) {
@@ -10,33 +12,62 @@ function nextPitch(previous: number, interval: number): number {
   }
 }
 
-function createScale(
+function integersToPitchClasses(integers: number[]): PitchClass[] {
+  const pitchClasses: PitchClass[] = [];
+  for (const n in integers) {
+    pitchClasses.push(Pitches[n]);
+  }
+  return pitchClasses;
+}
+
+function createScaleNotes(
   intervals: number[],
   rootNotePitchClass: number
-): number[] {
-  const scale: number[] = [rootNotePitchClass];
+): PitchClass[] {
+  const scaleIntegers: number[] = [rootNotePitchClass];
   for (let i = 0; i < intervals.length; i++) {
-    const previousPitch = scale[i];
-    scale.push(nextPitch(previousPitch, intervals[i]));
+    const previousPitch = scaleIntegers[i];
+    scaleIntegers.push(nextPitch(previousPitch, intervals[i]));
   }
-  return scale;
+  return integersToPitchClasses(scaleIntegers);
 }
 
-function makeMajorScales() {
-  const scales: number[][] = [];
-  for (let p = 0; p < Pitches.length; p++) {
-    scales.push(createScale(Major, Pitches[p].integerNotation));
+function createScale(
+  rootNote: number,
+  scaleType: ScaleType,
+  displayName: string,
+  id: number
+): Scale {
+  const scaleNotes: PitchClass[] = createScaleNotes(
+    scaleType.intervals,
+    rootNote
+  );
+  return {
+    scaleType: scaleType,
+    displayName: displayName,
+    notes: scaleNotes,
+    id: id,
+  };
+}
+
+function createAllScales(): Scale[] {
+  let keyTracker = 0;
+  const scales: Scale[] = [];
+  for (let t = 0; t < AllScaleTypes.length; t++) {
+    for (let p = 0; p < Pitches.length; p++) {
+      const scaleName =
+        Pitches[p].aliases[0] + ' ' + AllScaleTypes[t].scaleName;
+      const aScale = createScale(
+        Pitches[p].integerNotation,
+        AllScaleTypes[t],
+        scaleName,
+        keyTracker
+      );
+      scales.push(aScale);
+      keyTracker++;
+    }
   }
   return scales;
 }
 
-function makeMinorScales() {
-  const scales: number[][] = [];
-  for (let p = 0; p < Pitches.length; p++) {
-    scales.push(createScale(Minor, Pitches[p].integerNotation));
-  }
-  return scales;
-}
-
-export const MajorScales = makeMajorScales();
-export const MinorScales = makeMinorScales();
+export const AllScales = createAllScales();

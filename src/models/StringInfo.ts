@@ -1,6 +1,7 @@
 import { FretInfo } from './FretInfo';
 import { Pitches } from '../constants/Pitches';
-import { ScaleInfo } from '../constants/ScaleInfo';
+import { PitchToScaleRelationship } from '../constants/PitchToScaleRelationship';
+import { PitchClass } from '../types/PitchClass';
 
 export class StringInfo {
   fretCount: number;
@@ -50,13 +51,16 @@ export class StringInfo {
     }
     this.built = true;
   }
-  setScale(intervals: number[]) {
+  setScale(pitches: PitchClass[]) {
     for (let f = 0; f < this.frets.length; f++) {
-      const check = intervals.indexOf(this.frets[f].pitchClass.integerNotation);
-      if (check > -1) {
-        this.frets[f].scaleInfo = ScaleInfo.Tonic;
+      const check = pitches.filter(
+        (pitch) =>
+          pitch.integerNotation === this.frets[f].pitchClass.integerNotation
+      );
+      if (check.length) {
+        this.frets[f].scaleInfo = PitchToScaleRelationship.Tonic;
       } else {
-        this.frets[f].scaleInfo = ScaleInfo.Chromatic;
+        this.frets[f].scaleInfo = PitchToScaleRelationship.Chromatic;
       }
     }
   }

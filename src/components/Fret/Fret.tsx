@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './Fret.module.scss';
 import { FretInfo } from '../../models/FretInfo';
-import { ScaleInfo } from '../../constants/ScaleInfo';
+import { PitchToScaleRelationship } from '../../constants/PitchToScaleRelationship';
 
 interface FretProperties {
   fretInfo: FretInfo;
@@ -9,10 +9,10 @@ interface FretProperties {
 const Fret: React.FC<FretProperties> = ({ fretInfo }) => {
   let fretDisplay = 'fret-label';
   switch (fretInfo.scaleInfo) {
-    case ScaleInfo.Chromatic:
+    case PitchToScaleRelationship.Chromatic:
       fretDisplay += ' chromatic';
       break;
-    case ScaleInfo.Tonic:
+    case PitchToScaleRelationship.Tonic:
       fretDisplay += ' tonic';
       break;
     default:
