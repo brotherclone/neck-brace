@@ -1,0 +1,15 @@
+// https://www.colourlovers.com/palette/404561/fender_jag
+$gray-anne: rgb(94,92,79);
+$green-anne: rgb(94,140,79);
+$soft-wheat: rgb(245,243,230);
+$jaguar: rgb(197,188,181);
+$crate: rgb(221,61,73);
+$hot-rod-red: rgb(127,14,8);
+
+$text-grey: darken($gray-anne, 90%);
+$heading-text-grey: darken($gray-anne, 70%);
+$aside-text-grey: darken($gray-anne, 30%);
+
+body{
+  background-color: $soft-wheat;
+}

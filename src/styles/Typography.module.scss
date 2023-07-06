@@ -1,0 +1,36 @@
+@import "./Pallette.module";
+
+$main-font-family: "apparat-cond", sans-serif;
+$light-font-family:  "apparat-cond-light", sans-serif;
+
+html{
+  font-size: 16px;
+}
+
+
+@mixin body-text(){
+  color: $text-grey;
+  font-family: $main-font-family;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+}
+
+@mixin header-text(){
+  color: $heading-text-grey;
+  font-family: $main-font-family;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2rem;
+}
+
+@mixin aside-text(){
+  color: $aside-text-grey;
+  font-family: $light-font-family;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 0.75rem;
+}
+body{
+  @include body-text();
+}

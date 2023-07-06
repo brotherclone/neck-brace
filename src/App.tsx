@@ -17,7 +17,7 @@ const App = () => {
     SetCurrentScale(AllScales[scaleIndex]);
   };
   return (
-    <div>
+    <div className={'neck-brace-container'}>
       <ScaleSelector
         label={'Select Scale'}
         currentValue={scaleIndex}

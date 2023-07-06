@@ -16,18 +16,16 @@ const ScaleSelector: React.FC<ScaleSelectorProperties> = ({
   onChange,
 }) => {
   return (
-    <>
-      <label>
-        {label}
-        <select value={currentValue} onChange={onChange}>
-          {options.map((option, index) => (
-            <option value={option.optionValue} key={index}>
-              {option.optionLabel}
-            </option>
-          ))}
-        </select>
-      </label>
-    </>
+    <div className={'scale-select-container'}>
+      <label htmlFor={'scales'}>{label}</label>
+      <select value={currentValue} onChange={onChange} id={'scales'}>
+        {options.map((option, index) => (
+          <option value={option.optionValue} key={index}>
+            {option.optionLabel}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 

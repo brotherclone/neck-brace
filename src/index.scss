@@ -3,3 +3,17 @@
 @import "components/Fret/Fret.module";
 @import "components/Neck/Neck.module";
 @import "components/ScaleSelector/ScaleSelector.module";
+
+html, body{
+  padding: 0;
+  margin: 0;
+}
+
+.neck-container{
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: center;
+}

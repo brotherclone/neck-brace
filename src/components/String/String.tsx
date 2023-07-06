@@ -15,8 +15,7 @@ const String: React.FC<StringProperties> = ({ stringInfo, stringName }) => {
   }, [stringInfo]);
   return (
     <div className={'string-container'}>
-      <div className={'string-container-inner'}>
-        <div className={'string-name'}>{stringName}</div>
+      <div className={'string-container-inner'} aria-label={stringName}>
         {currentFrets.map((fret, index) => {
           return <Fret key={index} fretInfo={fret} />;
         })}

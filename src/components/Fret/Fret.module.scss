@@ -1,15 +1,55 @@
-.fret-container{
-  border: 1px solid grey;
-  height: 25px;
+@import "../../styles/Pallette.module";
+@import "../../styles/Typography.module";
+
+@mixin fret-label-helper($size: 1rem){
+  border-radius: $size/2;
+  height: $size;
+  width: $size;
   display: flex;
   flex-direction: column;
-  .fret-label{
-    text-align: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.fret-container{
+  display: flex;
+  flex-direction: column;
+  &:first-child{
+    .fret-label-container{
+      border: 0.1rem solid $gray-anne;
+    }
+    .tonic{
+      background-color: transparentize($green-anne, 0.5);
+      .fret-label{
+        color: $gray-anne;
+      }
+    }
+    .chromatic{
+      background-color: transparentize($hot-rod-red, 0.5);
+      .fret-label{
+        color: $gray-anne;
+      }
+    }
+  }
+  .fret-label-container{
+    @include fret-label-helper(2rem);
+    .fret-label{
+      color: $gray-anne;
+      @include header-text();
+      font-size: 0.6rem;
+    }
   }
   .tonic{
-    background-color: forestgreen;
+    .fret-label{
+      color: $jaguar;
+    }
+    background-color: $green-anne;
   }
   .chromatic{
-    background-color: brown;
+    .fret-label{
+      color: $soft-wheat;
+    }
+    background-color: $hot-rod-red;
   }
 }
