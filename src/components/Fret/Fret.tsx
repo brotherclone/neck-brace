@@ -7,17 +7,20 @@ interface FretProperties {
   fretInfo: FretInfo;
 }
 const Fret: React.FC<FretProperties> = ({ fretInfo }) => {
-  let fretDisplay = 'fret-label';
-  switch (fretInfo.scaleInfo) {
-    case PitchToScaleRelationship.Chromatic:
-      fretDisplay += ' chromatic';
-      break;
-    case PitchToScaleRelationship.Tonic:
-      fretDisplay += ' tonic';
-      break;
-    default:
-      fretDisplay += ' default';
-  }
+  const [fretDisplay, SetFretDisplay] = React.useState('fret-label');
+  React.useEffect(() => {
+    switch (fretInfo.scaleInfo) {
+      case PitchToScaleRelationship.Chromatic:
+        SetFretDisplay('fret-label chromatic');
+        break;
+      case PitchToScaleRelationship.Tonic:
+        SetFretDisplay('fret-label tonic');
+        break;
+      default:
+        SetFretDisplay('fret-label');
+    }
+  }, [fretInfo]);
+
   return (
     <div className={'fret-container'}>
       <div

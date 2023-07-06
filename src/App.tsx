@@ -5,19 +5,30 @@ import { StandardGuitarTuning } from './constants/GuitarTunings';
 import { StandardGuitarFretCount } from './constants/GuitarFrets';
 import Neck from './components/Neck/Neck';
 import ScaleSelector from './components/ScaleSelector/ScaleSelector';
+
 const App = () => {
+  const [scaleIndex, SetScaleIndex] = React.useState(0);
+  const [currentScale, SetCurrentScale] = React.useState(AllScales[scaleIndex]);
+  const handleScaleSelection = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    event.preventDefault();
+    SetScaleIndex(event.target.value as unknown as number);
+    SetCurrentScale(AllScales[scaleIndex]);
+  };
   return (
     <div>
       <ScaleSelector
         label={'Select Scale'}
-        currentValue={0}
+        currentValue={scaleIndex}
         options={AllScaleSelections}
+        onChange={handleScaleSelection}
       />
       <Neck
         tuning={StandardGuitarTuning}
         fretCount={StandardGuitarFretCount}
         neckStrings={[]}
-        scale={AllScales[0]}
+        scale={currentScale}
       />
     </div>
   );

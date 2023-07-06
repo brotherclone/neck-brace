@@ -6,18 +6,20 @@ interface ScaleSelectorProperties {
   label: string;
   currentValue: number;
   options: OptionType[];
+  onChange(event: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
 const ScaleSelector: React.FC<ScaleSelectorProperties> = ({
   label,
   currentValue,
   options,
+  onChange,
 }) => {
   return (
     <>
       <label>
         {label}
-        <select value={currentValue}>
+        <select value={currentValue} onChange={onChange}>
           {options.map((option, index) => (
             <option value={option.optionValue} key={index}>
               {option.optionLabel}

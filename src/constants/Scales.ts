@@ -15,8 +15,9 @@ function nextPitch(previous: number, interval: number): number {
 
 function integersToPitchClasses(integers: number[]): PitchClass[] {
   const pitchClasses: PitchClass[] = [];
-  for (const n in integers) {
-    pitchClasses.push(Pitches[n]);
+  for (let i = 0; i < integers.length; i++) {
+    const aPitch = Pitches[integers[i]];
+    pitchClasses.push(aPitch);
   }
   return pitchClasses;
 }
@@ -30,6 +31,7 @@ function createScaleNotes(
     const previousPitch = scaleIntegers[i];
     scaleIntegers.push(nextPitch(previousPitch, intervals[i]));
   }
+
   return integersToPitchClasses(scaleIntegers);
 }
 

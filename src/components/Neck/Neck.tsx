@@ -18,6 +18,11 @@ const Neck: React.FC<NeckProperties> = ({
   neckStrings,
   scale,
 }) => {
+  React.useEffect(() => {
+    neckStrings.forEach((string) => {
+      string.setScale(scale.notes);
+    });
+  }, [scale, neckStrings]);
   if (neckStrings.length === 0) {
     tuning.forEach((item) => {
       const aStringInfoHolder = new StringInfo(
