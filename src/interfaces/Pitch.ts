@@ -1,8 +1,8 @@
 import { PitchClass } from '../types/PitchClass';
-import { ScaleInfo } from '../constants/ScaleInfo';
+import { PitchToScaleRelationship } from '../constants/PitchToScaleRelationship';
 
 export interface Pitch {
   pitchClass: PitchClass;
   octave: number;
-  scaleInfo?: ScaleInfo;
+  scaleInfo?: PitchToScaleRelationship;
 }

@@ -9,11 +9,15 @@ interface StringProperties {
 }
 
 const String: React.FC<StringProperties> = ({ stringInfo, stringName }) => {
+  const [currentFrets, SetCurrentFrets] = React.useState(stringInfo.frets);
+  React.useEffect(() => {
+    SetCurrentFrets(stringInfo.frets);
+  }, [stringInfo]);
   return (
     <div className={'string-container'}>
       <div className={'string-container-inner'}>
         <div className={'string-name'}>{stringName}</div>
-        {stringInfo.frets.map((fret, index) => {
+        {currentFrets.map((fret, index) => {
           return <Fret key={index} fretInfo={fret} />;
         })}
       </div>

@@ -3,12 +3,13 @@ import './Neck.module.scss';
 import { StringInfo } from '../../models/StringInfo';
 import { FretInfo } from '../../models/FretInfo';
 import String from '../String/String';
+import { Scale } from '../../types/Scale';
 
 interface NeckProperties {
   tuning: FretInfo[];
   neckStrings: StringInfo[];
   fretCount: number;
-  scale: number[];
+  scale: Scale;
 }
 
 const Neck: React.FC<NeckProperties> = ({
@@ -17,6 +18,11 @@ const Neck: React.FC<NeckProperties> = ({
   neckStrings,
   scale,
 }) => {
+  React.useEffect(() => {
+    neckStrings.forEach((string) => {
+      string.setScale(scale.notes);
+    });
+  }, [scale, neckStrings]);
   if (neckStrings.length === 0) {
     tuning.forEach((item) => {
       const aStringInfoHolder = new StringInfo(
@@ -25,7 +31,7 @@ const Neck: React.FC<NeckProperties> = ({
         item.pitchClass.aliases[0]
       );
       aStringInfoHolder.buildString();
-      aStringInfoHolder.setScale(scale);
+      aStringInfoHolder.setScale(scale.notes);
       neckStrings.push(aStringInfoHolder);
     });
   }
