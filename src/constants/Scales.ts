@@ -3,6 +3,7 @@ import { Pitches } from './Pitches';
 import { Scale } from '../types/Scale';
 import { ScaleType } from '../types/ScaleType';
 import { PitchClass } from '../types/PitchClass';
+import { OptionType } from '../types/OptionType';
 
 function nextPitch(previous: number, interval: number): number {
   if (previous + interval < Pitches.length) {
@@ -70,4 +71,19 @@ function createAllScales(): Scale[] {
   return scales;
 }
 
-export const AllScales = createAllScales();
+function createScaleSelections(scales: Scale[]): OptionType[] {
+  const scaleOptions: OptionType[] = [];
+  for (let s = 0; s < scales.length; s++) {
+    const anOption: OptionType = {
+      optionLabel: scales[s].displayName,
+      optionValue: scales[s].id,
+    };
+    scaleOptions.push(anOption);
+  }
+
+  return scaleOptions;
+}
+
+const allScales = createAllScales();
+export const AllScales = allScales;
+export const AllScaleSelections = createScaleSelections(allScales);
