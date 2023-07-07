@@ -2,22 +2,25 @@ import * as React from 'react';
 import './String.module.scss';
 import { StringInfo } from '../../models/StringInfo';
 import Fret from '../Fret/Fret';
+import { Scale } from '../../types/Scale';
 
 interface StringProperties {
   stringInfo: StringInfo;
   stringName: string;
+  scale: Scale;
 }
 
-const String: React.FC<StringProperties> = ({ stringInfo, stringName }) => {
-  const [currentFrets, SetCurrentFrets] = React.useState(stringInfo.frets);
-  React.useEffect(() => {
-    SetCurrentFrets(stringInfo.frets);
-  }, [stringInfo]);
+const String: React.FC<StringProperties> = ({
+  stringInfo,
+  stringName,
+  scale,
+}) => {
   return (
     <div className={'string-container'}>
-      <div className={'string-container-inner'} aria-label={stringName}>
-        {currentFrets.map((fret, index) => {
-          return <Fret key={index} fretInfo={fret} />;
+      <div className={'string-container-inner'} aria-description={stringName}>
+        {stringInfo.frets.map((f, index) => {
+          f.stringName = stringName;
+          return <Fret key={index} fretInfo={f} scale={scale} />;
         })}
       </div>
     </div>

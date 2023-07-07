@@ -44,6 +44,7 @@ const Neck: React.FC<NeckProperties> = ({
               stringInfo={s}
               stringName={s.name + ' string'}
               key={index}
+              scale={scale}
             />
           );
         })}

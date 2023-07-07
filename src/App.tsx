@@ -1,21 +1,29 @@
 import React from 'react';
-import './index.scss';
+import Neck from './components/Neck/Neck';
+import ScaleSelector from './components/ScaleSelector/ScaleSelector';
+import ScaleDisplay from './components/ScaleDisplay/ScaleDisplay';
 import { AllScales, AllScaleSelections } from './constants/Scales';
 import { StandardGuitarTuning } from './constants/GuitarTunings';
 import { StandardGuitarFretCount } from './constants/GuitarFrets';
-import Neck from './components/Neck/Neck';
-import ScaleSelector from './components/ScaleSelector/ScaleSelector';
+import './index.scss';
 
 const App = () => {
   const [scaleIndex, SetScaleIndex] = React.useState(0);
   const [currentScale, SetCurrentScale] = React.useState(AllScales[scaleIndex]);
+  const [currentSelection, SetCurrentSelection] = React.useState(scaleIndex);
+
   const handleScaleSelection = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     event.preventDefault();
-    SetScaleIndex(event.target.value as unknown as number);
-    SetCurrentScale(AllScales[scaleIndex]);
+    SetCurrentSelection(event.target.value as unknown as number);
   };
+
+  React.useEffect(() => {
+    SetScaleIndex(currentSelection);
+    SetCurrentScale(AllScales[currentSelection]);
+  }, [currentSelection]);
+
   return (
     <div className={'neck-brace-container'}>
       <ScaleSelector
@@ -24,6 +32,7 @@ const App = () => {
         options={AllScaleSelections}
         onChange={handleScaleSelection}
       />
+      <ScaleDisplay scale={currentScale} />
       <Neck
         tuning={StandardGuitarTuning}
         fretCount={StandardGuitarFretCount}

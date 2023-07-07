@@ -26,38 +26,39 @@ export class StringInfo {
   }
 
   buildString() {
-    let pitchTracker = 0;
-    let octaveTracker = 0;
+    let pitchTracker = this.openNote.pitchClass.integerNotation;
+    let octaveTracker = this.openNote.octave;
+    this.frets.push(this.openNote);
     if (!this.built) {
-      for (let i = 0; i < this.fretCount; i++) {
-        if (i === 0) {
-          this.frets.push(this.openNote);
-          pitchTracker = this.openNote.pitchClass.integerNotation;
-          octaveTracker = this.openNote.octave;
+      for (let i = 1; i < this.fretCount; i++) {
+        if (pitchTracker + 1 < Pitches.length) {
+          pitchTracker++;
         } else {
-          if (pitchTracker + 1 < Pitches.length) {
-            pitchTracker++;
-          } else {
-            octaveTracker++;
-            pitchTracker = 0;
-          }
-          const newFret: FretInfo = {
-            octave: octaveTracker,
-            pitchClass: Pitches[pitchTracker],
-          };
-          this.frets.push(newFret);
+          octaveTracker++;
+          pitchTracker = 0;
         }
+        const newFret: FretInfo = {
+          octave: octaveTracker,
+          pitchClass: Pitches[pitchTracker],
+          fretName: `${this.name} - Fret ${i}`,
+          fretNumber: i,
+          stringName: this.name,
+        };
+        this.frets.push(newFret);
       }
     }
     this.built = true;
   }
+
   setScale(pitches: PitchClass[]) {
     for (let f = 0; f < this.frets.length; f++) {
-      const check = pitches.filter(
+      this.frets[f].scaleInfo = PitchToScaleRelationship.NotSet;
+      const checkFilter = pitches.filter(
         (pitch) =>
           pitch.integerNotation === this.frets[f].pitchClass.integerNotation
       );
-      if (check.length) {
+      const check: boolean = checkFilter.length > 0;
+      if (check) {
         this.frets[f].scaleInfo = PitchToScaleRelationship.Tonic;
       } else {
         this.frets[f].scaleInfo = PitchToScaleRelationship.Chromatic;
