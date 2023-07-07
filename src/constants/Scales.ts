@@ -5,15 +5,16 @@ import { ScaleType } from '../types/ScaleType';
 import { PitchClass } from '../types/PitchClass';
 import { OptionType } from '../types/OptionType';
 
-function nextPitch(previous: number, interval: number): number {
-  if (previous + interval < Pitches.length) {
-    return previous + interval;
-  } else {
-    return previous + interval - Pitches.length;
+export function nextPitch(previous: number, interval: number): number {
+  const totalPitches: number = Pitches.length - 1;
+  let next: number = previous + interval;
+  if (next > totalPitches) {
+    next = next - 1 - totalPitches;
   }
+  return next;
 }
 
-function integersToPitchClasses(integers: number[]): PitchClass[] {
+export function integersToPitchClasses(integers: number[]): PitchClass[] {
   const pitchClasses: PitchClass[] = [];
   for (let i = 0; i < integers.length; i++) {
     const aPitch = Pitches[integers[i]];
@@ -22,11 +23,11 @@ function integersToPitchClasses(integers: number[]): PitchClass[] {
   return pitchClasses;
 }
 
-function createScaleNotes(
+export function createScaleNotes(
   intervals: number[],
-  rootNotePitchClass: number
+  rootNotePitchInteger: number
 ): PitchClass[] {
-  const scaleIntegers: number[] = [rootNotePitchClass];
+  const scaleIntegers: number[] = [rootNotePitchInteger];
   for (let i = 0; i < intervals.length; i++) {
     const previousPitch = scaleIntegers[i];
     scaleIntegers.push(nextPitch(previousPitch, intervals[i]));
@@ -35,7 +36,7 @@ function createScaleNotes(
   return integersToPitchClasses(scaleIntegers);
 }
 
-function createScale(
+export function createScale(
   rootNote: number,
   scaleType: ScaleType,
   displayName: string,
@@ -53,7 +54,7 @@ function createScale(
   };
 }
 
-function createAllScales(): Scale[] {
+export function createAllScales(): Scale[] {
   let keyTracker = 0;
   const scales: Scale[] = [];
   for (let t = 0; t < AllScaleTypes.length; t++) {
@@ -73,7 +74,7 @@ function createAllScales(): Scale[] {
   return scales;
 }
 
-function createScaleSelections(scales: Scale[]): OptionType[] {
+export function createScaleSelections(scales: Scale[]): OptionType[] {
   const scaleOptions: OptionType[] = [];
   for (let s = 0; s < scales.length; s++) {
     const anOption: OptionType = {
@@ -82,7 +83,6 @@ function createScaleSelections(scales: Scale[]): OptionType[] {
     };
     scaleOptions.push(anOption);
   }
-
   return scaleOptions;
 }
 
