@@ -3,8 +3,7 @@ import Neck from './components/Neck/Neck';
 import ScaleSelector from './components/ScaleSelector/ScaleSelector';
 import ScaleDisplay from './components/ScaleDisplay/ScaleDisplay';
 import { AllScales, AllScaleSelections } from './constants/Scales';
-import { StandardGuitarTuning } from './constants/GuitarTunings';
-import { StandardGuitarFretCount } from './constants/GuitarFrets';
+import { StandardGuitar } from './constants/Guitars';
 import './index.scss';
 
 const App = () => {
@@ -34,8 +33,8 @@ const App = () => {
       />
       <ScaleDisplay scale={currentScale} />
       <Neck
-        tuning={StandardGuitarTuning}
-        fretCount={StandardGuitarFretCount}
+        tuning={StandardGuitar.stringTuning}
+        fretCount={StandardGuitar.fretStepCount}
         neckStrings={[]}
         scale={currentScale}
       />
