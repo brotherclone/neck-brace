@@ -1,7 +1,6 @@
 import React from 'react';
 import useToggleState from './hooks/useToggleState';
 import Neck from './components/Neck/Neck';
-import Selector from './components/Selector/Selector';
 import ScaleDisplay from './components/ScaleDisplay/ScaleDisplay';
 import ControlPanel from './components/ControlPanel/ControlPanel';
 import TogglePanelButton from './components/TogglePanelButton/TogglePanelButton';
@@ -88,6 +87,9 @@ const App = () => {
         scale={currentScale}
         showOctave={isOctaveShowing}
         showNoteName={isNoteNameShowing}
+        newMarkers={
+          StandardGuitar.neckMarkers ? StandardGuitar.neckMarkers : []
+        }
       />
     </div>
   );

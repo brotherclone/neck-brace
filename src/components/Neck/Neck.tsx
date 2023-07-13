@@ -4,6 +4,8 @@ import { StringInfo } from '../../models/StringInfo';
 import { FretInfo } from '../../models/FretInfo';
 import String from '../String/String';
 import { Scale } from '../../types/Scale';
+import { NeckMarkerType } from '../../types/NeckMarkerType';
+import NeckMarker from '../NeckMarker/NeckMarker';
 
 interface NeckProperties {
   tuning: FretInfo[];
@@ -12,6 +14,7 @@ interface NeckProperties {
   scale: Scale;
   showOctave: boolean;
   showNoteName: boolean;
+  newMarkers: NeckMarkerType[];
 }
 
 const Neck: React.FC<NeckProperties> = ({
@@ -21,6 +24,7 @@ const Neck: React.FC<NeckProperties> = ({
   scale,
   showOctave,
   showNoteName,
+  newMarkers,
 }) => {
   React.useEffect(() => {
     neckStrings.forEach((string) => {
@@ -41,6 +45,11 @@ const Neck: React.FC<NeckProperties> = ({
   }
   return (
     <div className={'neck-container'}>
+      <div className={'neck-background'}>
+        {newMarkers?.map((m, index) => {
+          return <NeckMarker marks={m.marks} key={index} />;
+        })}
+      </div>
       <div className={'neck-strings'}>
         {neckStrings?.map((s, index) => {
           return (

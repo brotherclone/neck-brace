@@ -1,0 +1,13 @@
+@import "../../styles/Pallette.module";
+.fret-markers{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  z-index: -1;
+  .fret-marker{
+    background-color: $gray-anne;
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 0.5rem;
+  }
+}
