@@ -4,6 +4,9 @@
 @import "components/Neck/Neck.module";
 @import "components/ScaleSelector/ScaleSelector.module";
 @import "components/ScaleDisplay/ScaleDisplay.module";
+@import "components/ControlPanel/ControlPanel.module";
+@import "components/ControlToggle/ControlToggle.module";
+@import "components/TogglePanelButton/TogglePanelButton.modules";
 
 html, body{
   padding: 0;
