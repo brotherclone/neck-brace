@@ -4,7 +4,8 @@ import {
   integersToPitchClasses,
   createScaleNotes,
   createAllScales,
-  createScaleSelections,
+  createScaleSelectionModes,
+  createScaleSelectionNotes,
 } from '../constants/Scales';
 import { PitchClass } from '../types/PitchClass';
 import { Scale } from '../types/Scale';
@@ -240,13 +241,20 @@ describe('Scales', () => {
     expect(testScales[5]).toEqual(FMajor);
     expect(testScales[22]).toEqual(BFlatMinor);
   });
-  test('spot checks the selections', () => {
-    const testScales = createAllScales();
-    const testSelections = createScaleSelections(testScales);
+  test('spot checks the selection Modes', () => {
+    const testSelections = createScaleSelectionModes();
     const test: OptionType = {
-      optionLabel: 'G♯ Natural Minor',
-      optionValue: 20,
+      optionLabel: 'Natural Minor',
+      optionValue: 1,
     };
-    expect(test).toEqual(testSelections[20]);
+    expect(test).toEqual(testSelections[1]);
+  });
+  test('spot checks the selection Notes', () => {
+    const testSelections = createScaleSelectionNotes();
+    const test: OptionType = {
+      optionLabel: 'C♯',
+      optionValue: 1,
+    };
+    expect(test).toEqual(testSelections[1]);
   });
 });
