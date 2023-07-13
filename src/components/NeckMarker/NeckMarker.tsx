@@ -6,15 +6,17 @@ interface NeckMarkerProperties {
 }
 const NeckMarker: React.FC<NeckMarkerProperties> = ({ marks }) => {
   return (
-    <div className={'fret-markers'}>
-      {[...Array(marks)].map((m, index) => {
-        return (
-          <div key={index} className={'fret-marker'}>
-            &nbsp;
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <div className={'neck-marker-collection'}>
+        {[...Array(marks)].map((m, index) => {
+          return (
+            <div key={index} className={'neck-marker'}>
+              &nbsp;
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

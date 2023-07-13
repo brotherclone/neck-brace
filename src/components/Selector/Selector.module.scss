@@ -2,13 +2,14 @@
 @import "../../styles/Pallette.module";
 
 .selector-container{
-  width: 100%;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  &:nth-child(2){
+    margin-left: 1rem;
+  }
   label{
     @include aside-text();
-    padding-bottom: 0.5rem;
+    margin-right: 1rem;
   }
-  margin: 2rem 0 0.75rem 0;
 }

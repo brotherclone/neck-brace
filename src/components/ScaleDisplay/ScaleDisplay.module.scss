@@ -1,12 +1,12 @@
 @import "../../styles/Typography.module";
+@import "../../styles/Constants.module";
+
 .scale-display-container{
   display: flex;
   flex-direction: row;
-  align-items: center;
-  align-content: center;
   justify-content: center;
-  justify-items: center;
-  margin-bottom: 0.5rem;
+  width: $neck-width;
+   margin-bottom: 0.5rem;
   .scale-display-note{
     margin: 0.25rem;
     @include aside-text();

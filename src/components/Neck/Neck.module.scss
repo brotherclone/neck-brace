@@ -1,6 +1,15 @@
+@import "../../styles/Constants.module";
 .neck-container{
+  width: 100%;
+  max-width: $neck-width;
   .neck-strings{
     display: flex;
     flex-direction: row;
+  }
+  .neck-background{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: -1;
   }
 }
