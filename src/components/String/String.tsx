@@ -8,19 +8,31 @@ interface StringProperties {
   stringInfo: StringInfo;
   stringName: string;
   scale: Scale;
+  showOctave: boolean;
+  showNoteName: boolean;
 }
 
 const String: React.FC<StringProperties> = ({
   stringInfo,
   stringName,
   scale,
+  showOctave,
+  showNoteName,
 }) => {
   return (
     <div className={'string-container'}>
       <div className={'string-container-inner'} aria-description={stringName}>
         {stringInfo.frets.map((f, index) => {
           f.stringName = stringName;
-          return <Fret key={index} fretInfo={f} scale={scale} />;
+          return (
+            <Fret
+              key={index}
+              fretInfo={f}
+              scale={scale}
+              showOctave={showOctave}
+              showNoteName={showNoteName}
+            />
+          );
         })}
       </div>
     </div>

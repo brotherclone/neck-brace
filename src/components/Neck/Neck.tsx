@@ -10,6 +10,8 @@ interface NeckProperties {
   neckStrings: StringInfo[];
   fretCount: number;
   scale: Scale;
+  showOctave: boolean;
+  showNoteName: boolean;
 }
 
 const Neck: React.FC<NeckProperties> = ({
@@ -17,6 +19,8 @@ const Neck: React.FC<NeckProperties> = ({
   fretCount,
   neckStrings,
   scale,
+  showOctave,
+  showNoteName,
 }) => {
   React.useEffect(() => {
     neckStrings.forEach((string) => {
@@ -45,6 +49,8 @@ const Neck: React.FC<NeckProperties> = ({
               stringName={s.name + ' string'}
               key={index}
               scale={scale}
+              showOctave={showOctave}
+              showNoteName={showNoteName}
             />
           );
         })}

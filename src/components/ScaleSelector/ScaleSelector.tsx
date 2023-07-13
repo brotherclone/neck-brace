@@ -1,31 +1,42 @@
 import * as React from 'react';
-import { OptionType } from '../../types/OptionType';
 import './ScaleSelector.module.scss';
+import Selector from '../Selector/Selector';
+import { OptionType } from '../../types/OptionType';
 
 interface ScaleSelectorProperties {
-  label: string;
-  currentValue: number;
-  options: OptionType[];
-  onChange(event: React.ChangeEvent<HTMLSelectElement>): void;
+  noteOptions: OptionType[];
+  modeOptions: OptionType[];
+  currentRootNoteIndex: number;
+  currentModeIndex: number;
+  handleNoteSelection(event: React.ChangeEvent<HTMLSelectElement>): void;
+  handleModeSelection(event: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
 const ScaleSelector: React.FC<ScaleSelectorProperties> = ({
-  label,
-  currentValue,
-  options,
-  onChange,
+  modeOptions,
+  noteOptions,
+  currentModeIndex,
+  currentRootNoteIndex,
+  handleModeSelection,
+  handleNoteSelection,
 }) => {
   return (
-    <div className={'scale-select-container'}>
-      <label htmlFor={'scales'}>{label}</label>
-      <select value={currentValue} onChange={onChange} id={'scales'}>
-        {options.map((option, index) => (
-          <option value={option.optionValue} key={index}>
-            {option.optionLabel}
-          </option>
-        ))}
-      </select>
-    </div>
+    <>
+      <Selector
+        label={'Root Note'}
+        name={'rootNote'}
+        currentValue={currentRootNoteIndex}
+        options={noteOptions}
+        onChange={handleNoteSelection}
+      />
+      <Selector
+        label={'Mode'}
+        name={'mode'}
+        currentValue={currentModeIndex}
+        options={modeOptions}
+        onChange={handleModeSelection}
+      />
+    </>
   );
 };
 

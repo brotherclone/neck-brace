@@ -2,8 +2,12 @@
 @import "components/String/String.module";
 @import "components/Fret/Fret.module";
 @import "components/Neck/Neck.module";
+@import "components/Selector/Selector.module";
 @import "components/ScaleSelector/ScaleSelector.module";
 @import "components/ScaleDisplay/ScaleDisplay.module";
+@import "components/ControlPanel/ControlPanel.module";
+@import "components/ControlToggle/ControlToggle.module";
+@import "components/TogglePanelButton/TogglePanelButton.modules";
 
 html, body{
   padding: 0;

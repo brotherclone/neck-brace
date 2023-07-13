@@ -74,18 +74,43 @@ export function createAllScales(): Scale[] {
   return scales;
 }
 
-export function createScaleSelections(scales: Scale[]): OptionType[] {
-  const scaleOptions: OptionType[] = [];
-  for (let s = 0; s < scales.length; s++) {
+// export function createScaleSelections(scales: Scale[]): OptionType[] {
+//   const scaleOptions: OptionType[] = [];
+//   for (let s = 0; s < scales.length; s++) {
+//     const anOption: OptionType = {
+//       optionLabel: scales[s].displayName,
+//       optionValue: scales[s].id,
+//     };
+//     scaleOptions.push(anOption);
+//   }
+//   return scaleOptions;
+// }
+
+export function createScaleSelectionNotes(): OptionType[] {
+  const scaleNotes: OptionType[] = [];
+  for (let p = 0; p < Pitches.length; p++) {
     const anOption: OptionType = {
-      optionLabel: scales[s].displayName,
-      optionValue: scales[s].id,
+      optionValue: Pitches[p].integerNotation,
+      optionLabel: Pitches[p].aliases[0],
     };
-    scaleOptions.push(anOption);
+    scaleNotes.push(anOption);
   }
-  return scaleOptions;
+  return scaleNotes;
+}
+
+export function createScaleSelectionModes(): OptionType[] {
+  const scaleModes: OptionType[] = [];
+  for (let m = 0; m < AllScaleTypes.length; m++) {
+    const anOption: OptionType = {
+      optionLabel: AllScaleTypes[m].scaleName,
+      optionValue: m,
+    };
+    scaleModes.push(anOption);
+  }
+  return scaleModes;
 }
 
 const allScales = createAllScales();
 export const AllScales = allScales;
-export const AllScaleSelections = createScaleSelections(allScales);
+export const AllScaleNoteSelections = createScaleSelectionNotes();
+export const AllScaleModeSelections = createScaleSelectionModes();

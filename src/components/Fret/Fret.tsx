@@ -7,10 +7,30 @@ import { Scale } from '../../types/Scale';
 interface FretProperties {
   fretInfo: FretInfo;
   scale: Scale;
+  showOctave: boolean;
+  showNoteName: boolean;
 }
 
-const Fret: React.FC<FretProperties> = ({ fretInfo, scale }) => {
+const Fret: React.FC<FretProperties> = ({
+  fretInfo,
+  scale,
+  showOctave,
+  showNoteName,
+}) => {
   const [fretDisplay, setFretDisplay] = React.useState('fret-label-container');
+  function displayLabel() {
+    let label: string;
+    if (showOctave && showNoteName) {
+      label = `${fretInfo.pitchClass.aliases[0]}, ${fretInfo.octave}`;
+    } else if (showOctave && !showNoteName) {
+      label = `${fretInfo.octave}`;
+    } else if (!showOctave && showNoteName) {
+      label = `${fretInfo.pitchClass.aliases[0]}`;
+    } else {
+      label = '';
+    }
+    return <>{label}</>;
+  }
   React.useEffect(() => {
     if (fretInfo.fretNumber === 0) {
       setFretDisplay('fret-label-container-open');
@@ -37,7 +57,7 @@ const Fret: React.FC<FretProperties> = ({ fretInfo, scale }) => {
     <div className={'fret-container'}>
       <div className={fretDisplay}>
         <div className={'fret-label'} aria-label={fretInfo.fretName}>
-          {`${fretInfo.pitchClass.aliases[0]}, ${fretInfo.octave}`}
+          {displayLabel()}
         </div>
       </div>
     </div>

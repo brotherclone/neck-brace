@@ -1,0 +1,14 @@
+@import "../../styles/Typography.module";
+@import "../../styles/Pallette.module";
+
+.selector-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  label{
+    @include aside-text();
+    padding-bottom: 0.5rem;
+  }
+  margin: 2rem 0 0.75rem 0;
+}

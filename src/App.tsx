@@ -1,42 +1,93 @@
 import React from 'react';
+import useToggleState from './hooks/useToggleState';
 import Neck from './components/Neck/Neck';
-import ScaleSelector from './components/ScaleSelector/ScaleSelector';
+import Selector from './components/Selector/Selector';
 import ScaleDisplay from './components/ScaleDisplay/ScaleDisplay';
-import { AllScales, AllScaleSelections } from './constants/Scales';
+import ControlPanel from './components/ControlPanel/ControlPanel';
+import TogglePanelButton from './components/TogglePanelButton/TogglePanelButton';
+import {
+  AllScales,
+  AllScaleModeSelections,
+  AllScaleNoteSelections,
+} from './constants/Scales';
 import { StandardGuitar } from './constants/Guitars';
 import './index.scss';
+import ScaleSelector from './components/ScaleSelector/ScaleSelector';
+import { AllScaleTypes } from './constants/ScaleInvervals';
 
 const App = () => {
-  const [scaleIndex, SetScaleIndex] = React.useState(0);
-  const [currentScale, SetCurrentScale] = React.useState(AllScales[scaleIndex]);
-  const [currentSelection, SetCurrentSelection] = React.useState(scaleIndex);
+  const [scaleIndex, setScaleIndex] = React.useState(0);
+  const [currentScale, setCurrentScale] = React.useState(AllScales[scaleIndex]);
+  const [currentRootNoteIndex, setCurrentRootNoteIndex] = React.useState(0);
+  const [currentModeIndex, setCurrentModeIndex] = React.useState(0);
+  const [isScaleShowing, checkScale, uncheckScale] = useToggleState(false);
+  const [isOctaveShowing, checkOctave, uncheckOctave] = useToggleState(true);
+  const [isPanelShowing, showPanel, hidePanel] = useToggleState(false);
+  const [isNoteNameShowing, checkNoteName, uncheckNoteName] =
+    useToggleState(true);
 
-  const handleScaleSelection = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleNoteSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     event.preventDefault();
-    SetCurrentSelection(event.target.value as unknown as number);
+    setCurrentRootNoteIndex(event.target.value as unknown as number);
+  };
+
+  const handleModeSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    event.preventDefault();
+    setCurrentModeIndex(event.target.value as unknown as number);
   };
 
   React.useEffect(() => {
-    SetScaleIndex(currentSelection);
-    SetCurrentScale(AllScales[currentSelection]);
-  }, [currentSelection]);
+    const findScale = AllScales.filter(
+      (scale) =>
+        scale.notes[0].integerNotation ==
+          (currentRootNoteIndex as unknown as number) &&
+        scale.scaleType.scaleName == AllScaleTypes[currentModeIndex].scaleName
+    );
+    AllScales.map((scale, index) => {
+      if (findScale.includes(scale)) {
+        setScaleIndex(index);
+        setCurrentScale(AllScales[scaleIndex]);
+      }
+    });
+  }, [currentModeIndex, currentRootNoteIndex, currentScale, scaleIndex]);
 
   return (
     <div className={'neck-brace-container'}>
-      <ScaleSelector
-        label={'Select Scale'}
-        currentValue={scaleIndex}
-        options={AllScaleSelections}
-        onChange={handleScaleSelection}
+      <TogglePanelButton
+        buttonState={isPanelShowing}
+        turnOn={showPanel}
+        turnOff={hidePanel}
+        label={'Show Controls'}
+        name={'showPanelButton'}
       />
-      <ScaleDisplay scale={currentScale} />
+      <ControlPanel
+        showPanel={isPanelShowing}
+        showScale={isScaleShowing}
+        checkScaleHandle={checkScale}
+        unCheckScaleHandle={uncheckScale}
+        showOctave={isOctaveShowing}
+        checkOctaveHandle={checkOctave}
+        unCheckOctaveHandle={uncheckOctave}
+        showNoteName={isNoteNameShowing}
+        checkNoteNameHandle={checkNoteName}
+        unCheckNoteNameHandle={uncheckNoteName}
+      />
+      <ScaleSelector
+        modeOptions={AllScaleModeSelections}
+        noteOptions={AllScaleNoteSelections}
+        currentModeIndex={currentModeIndex}
+        currentRootNoteIndex={currentRootNoteIndex}
+        handleModeSelection={handleModeSelection}
+        handleNoteSelection={handleNoteSelection}
+      />
+      <ScaleDisplay scale={currentScale} hidden={isScaleShowing} />
       <Neck
         tuning={StandardGuitar.stringTuning}
         fretCount={StandardGuitar.fretStepCount}
         neckStrings={[]}
         scale={currentScale}
+        showOctave={isOctaveShowing}
+        showNoteName={isNoteNameShowing}
       />
     </div>
   );
