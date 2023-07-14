@@ -1,10 +1,5 @@
-.toggle-panel-button-container{
-  .toggle-control-panel-button{
-    &.on{
+@import "../../styles/Buttons.module";
 
-    }
-    &.off{
-
-    }
-  }
+button{
+  @include button-bg();
 }

@@ -1,0 +1,28 @@
+@import "Pallette.module";
+@import "Typography.module";
+
+@mixin button-bg($bg: $green-anne) {
+  background: $bg;
+  &:hover {
+    background:darken($bg,8%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  &:active {
+    background:darken($bg,25%);
+  }
+}
+
+.btn {
+  color:white;
+  text-decoration:none;
+  padding:0.313rem 0.625rem 1.33rem 0.625rem;
+  border-radius:0.031rem;
+  height: 2rem;
+  border: 0.313rem solid transparent;
+  box-shadow: 0.031rem 0.031rem transparentize($aside-text-grey, 0.9);
+  font-family: $main-font-family;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+

@@ -3,8 +3,8 @@
 .neck-marker-collection{
   display: flex;
   flex-direction: row;
-  height: $fret-height;
-  width: $neck-width + $neck-width*0.02;
+  height: 4.938rem;
+  width: $neck-width;
   justify-content: center;
   align-items: center;
   border: 1px solid transparent;

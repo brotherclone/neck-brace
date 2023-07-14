@@ -6,7 +6,7 @@
   flex-direction: row;
   justify-content: center;
   width: $neck-width;
-   margin-bottom: 0.5rem;
+   margin:0 0 0.75rem;
   .scale-display-note{
     margin: 0.25rem;
     @include aside-text();

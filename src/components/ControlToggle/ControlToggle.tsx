@@ -25,10 +25,10 @@ const ControlToggle: React.FC<ControlToggleProperties> = ({
     }
   };
   return (
-    <>
+    <div className={'toggle-container'}>
       <Toggle id={name} checked={checked} onChange={doCheck} />
       <label htmlFor={name}>{label}</label>
-    </>
+    </div>
   );
 };
 
