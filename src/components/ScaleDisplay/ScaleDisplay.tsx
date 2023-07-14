@@ -4,13 +4,16 @@ import { Scale } from '../../types/Scale';
 
 interface ScaleDisplayProperties {
   scale: Scale;
-  hidden: boolean;
+  isShowing: boolean;
 }
 
-const ScaleDisplay: React.FC<ScaleDisplayProperties> = ({ scale, hidden }) => {
+const ScaleDisplay: React.FC<ScaleDisplayProperties> = ({
+  scale,
+  isShowing,
+}) => {
   return (
     <>
-      {!hidden && (
+      {isShowing && (
         <div className={'scale-display-container'}>
           {scale.notes.map((note, index) => {
             return (

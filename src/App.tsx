@@ -1,7 +1,6 @@
 import React from 'react';
 import useToggleState from './hooks/useToggleState';
 import Neck from './components/Neck/Neck';
-import Selector from './components/Selector/Selector';
 import ScaleDisplay from './components/ScaleDisplay/ScaleDisplay';
 import ControlPanel from './components/ControlPanel/ControlPanel';
 import TogglePanelButton from './components/TogglePanelButton/TogglePanelButton';
@@ -49,38 +48,55 @@ const App = () => {
         setCurrentScale(AllScales[scaleIndex]);
       }
     });
-  }, [currentModeIndex, currentRootNoteIndex, currentScale, scaleIndex]);
+  }, [
+    currentModeIndex,
+    currentRootNoteIndex,
+    currentScale,
+    scaleIndex,
+    isPanelShowing,
+  ]);
 
   return (
     <div className={'neck-brace-container'}>
-      <TogglePanelButton
-        buttonState={isPanelShowing}
-        turnOn={showPanel}
-        turnOff={hidePanel}
-        label={'Show Controls'}
-        name={'showPanelButton'}
-      />
-      <ControlPanel
-        showPanel={isPanelShowing}
-        showScale={isScaleShowing}
-        checkScaleHandle={checkScale}
-        unCheckScaleHandle={uncheckScale}
-        showOctave={isOctaveShowing}
-        checkOctaveHandle={checkOctave}
-        unCheckOctaveHandle={uncheckOctave}
-        showNoteName={isNoteNameShowing}
-        checkNoteNameHandle={checkNoteName}
-        unCheckNoteNameHandle={uncheckNoteName}
-      />
-      <ScaleSelector
-        modeOptions={AllScaleModeSelections}
-        noteOptions={AllScaleNoteSelections}
-        currentModeIndex={currentModeIndex}
-        currentRootNoteIndex={currentRootNoteIndex}
-        handleModeSelection={handleModeSelection}
-        handleNoteSelection={handleNoteSelection}
-      />
-      <ScaleDisplay scale={currentScale} hidden={isScaleShowing} />
+      <div
+        className={`slide-out-container ${isPanelShowing ? 'extended' : ''}`}
+      >
+        <ControlPanel
+          showPanel={isPanelShowing}
+          hidePanel={hidePanel}
+          showScale={isScaleShowing}
+          checkScaleHandle={checkScale}
+          unCheckScaleHandle={uncheckScale}
+          showOctave={isOctaveShowing}
+          checkOctaveHandle={checkOctave}
+          unCheckOctaveHandle={uncheckOctave}
+          showNoteName={isNoteNameShowing}
+          checkNoteNameHandle={checkNoteName}
+          unCheckNoteNameHandle={uncheckNoteName}
+        />
+      </div>
+      <div
+        className={`neck-brace-controls-container ${
+          isScaleShowing ? '' : 'no-scale-display'
+        }`}
+      >
+        <TogglePanelButton
+          buttonState={isPanelShowing}
+          turnOn={showPanel}
+          turnOff={hidePanel}
+          label={'Show Controls'}
+          name={'showPanelButton'}
+        />
+        <ScaleSelector
+          modeOptions={AllScaleModeSelections}
+          noteOptions={AllScaleNoteSelections}
+          currentModeIndex={currentModeIndex}
+          currentRootNoteIndex={currentRootNoteIndex}
+          handleModeSelection={handleModeSelection}
+          handleNoteSelection={handleNoteSelection}
+        />
+      </div>
+      <ScaleDisplay scale={currentScale} isShowing={isScaleShowing} />
       <Neck
         tuning={StandardGuitar.stringTuning}
         fretCount={StandardGuitar.fretStepCount}
@@ -88,6 +104,9 @@ const App = () => {
         scale={currentScale}
         showOctave={isOctaveShowing}
         showNoteName={isNoteNameShowing}
+        newMarkers={
+          StandardGuitar.neckMarkers ? StandardGuitar.neckMarkers : []
+        }
       />
     </div>
   );

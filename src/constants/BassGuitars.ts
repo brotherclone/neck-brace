@@ -1,5 +1,5 @@
 import { StringedInstrument } from '../models/StringedInstrument';
-import { Hand, PolyPhonicPlayMode } from './PlayMode';
+import { Hand, InstrumentOrientation, PolyPhonicPlayMode } from './PlayMode';
 import { Pitches } from './Pitches';
 
 export const StandardBassGuitar = new StringedInstrument(
@@ -60,6 +60,45 @@ export const StandardBassGuitar = new StringedInstrument(
       stringName: 'G',
       fretNumber: 0,
       fretName: 'Open',
+    },
+  ],
+  InstrumentOrientation.Right,
+  [
+    {
+      fret: 3,
+      marks: 1,
+    },
+    {
+      fret: 5,
+      marks: 1,
+    },
+    {
+      fret: 7,
+      marks: 1,
+    },
+    {
+      fret: 9,
+      marks: 1,
+    },
+    {
+      fret: 12,
+      marks: 2,
+    },
+    {
+      fret: 15,
+      marks: 1,
+    },
+    {
+      fret: 17,
+      marks: 1,
+    },
+    {
+      fret: 19,
+      marks: 1,
+    },
+    {
+      fret: 21,
+      marks: 1,
     },
   ]
 );
