@@ -1,7 +1,18 @@
+@import "../../styles/Pallette.module";
+@import "../../styles/Constants.module";
 .string-container{
-  width: 22%;
+  width: $neck-width;
   display: flex;
   flex-direction: column;
+  &:last-of-type{
+    .string-container-inner{
+      .fret-container{
+        &:not(:nth-of-type(1)){
+          border-right: 1px solid $gray-anne;
+        }
+      }
+    }
+  }
   .string-inner{
     .string-name{
     }

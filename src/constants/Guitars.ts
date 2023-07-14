@@ -120,7 +120,6 @@ const baseGuitar = new StringedInstrument(
     { fret: 19, marks: 1 },
     { fret: 20, marks: 0 },
     { fret: 21, marks: 1 },
-    { fret: 22, marks: 0 },
   ]
 );
 

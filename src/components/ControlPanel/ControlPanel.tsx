@@ -4,6 +4,7 @@ import './ControlPanel.module.scss';
 
 interface ControlPanelProperties {
   showPanel: boolean;
+  hidePanel(): void;
   showScale: boolean;
   checkScaleHandle(): void;
   unCheckScaleHandle(): void;
@@ -17,6 +18,7 @@ interface ControlPanelProperties {
 
 const ControlPanel: React.FC<ControlPanelProperties> = ({
   showPanel,
+  hidePanel,
   showScale,
   checkScaleHandle,
   unCheckScaleHandle,
@@ -31,6 +33,7 @@ const ControlPanel: React.FC<ControlPanelProperties> = ({
     <>
       {showPanel && (
         <div className={'control-panel-container'}>
+          <h2>Neck Brace</h2>
           <ControlToggle
             name={'showScale'}
             label={'Show Scale'}
@@ -52,6 +55,9 @@ const ControlPanel: React.FC<ControlPanelProperties> = ({
             checkHandle={checkOctaveHandle}
             unCheckHandle={unCheckOctaveHandle}
           />
+          <button onClick={hidePanel} className={'btn'}>
+            Close Panel
+          </button>
         </div>
       )}
     </>

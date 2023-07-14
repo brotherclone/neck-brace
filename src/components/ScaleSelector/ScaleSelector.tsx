@@ -21,7 +21,7 @@ const ScaleSelector: React.FC<ScaleSelectorProperties> = ({
   handleNoteSelection,
 }) => {
   return (
-    <>
+    <div className={'scale-selector-container'}>
       <Selector
         label={'Root Note'}
         name={'rootNote'}
@@ -36,7 +36,7 @@ const ScaleSelector: React.FC<ScaleSelectorProperties> = ({
         options={modeOptions}
         onChange={handleModeSelection}
       />
-    </>
+    </div>
   );
 };
 

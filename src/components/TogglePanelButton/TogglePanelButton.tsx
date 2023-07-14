@@ -26,7 +26,7 @@ const TogglePanelButton: React.FC<TogglePanelButtonProperties> = ({
 
   return (
     <>
-      <button id={name} onClick={buttonHandle}>
+      <button id={name} onClick={buttonHandle} className={'btn'}>
         {label}
       </button>
     </>

@@ -1,13 +1,25 @@
 @import "../../styles/Pallette.module";
-.fret-markers{
+@import "../../styles/Constants.module";
+.neck-marker-collection{
   display: flex;
   flex-direction: row;
-  position: absolute;
-  z-index: -1;
-  .fret-marker{
+  height: 4.938rem;
+  width: $neck-width;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+  background-color: $jaguar;
+  &:nth-child(1){
+    height: 3.1rem;
+    background-color: transparent;
+  }
+  .neck-marker{
     background-color: $gray-anne;
-    height: 0.5rem;
-    width: 0.5rem;
-    border-radius: 0.5rem;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 2rem;
+    &:nth-child(2){
+      margin-left: 8.2rem;
+    }
   }
 }
