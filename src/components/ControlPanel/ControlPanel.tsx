@@ -1,6 +1,8 @@
 import * as React from 'react';
 import ControlToggle from '../ControlToggle/ControlToggle';
+import Selector from '../Selector/Selector';
 import './ControlPanel.module.scss';
+import { OptionType } from '../../types/OptionType';
 
 interface ControlPanelProperties {
   showPanel: boolean;
@@ -14,6 +16,9 @@ interface ControlPanelProperties {
   showNoteName: boolean;
   checkNoteNameHandle(): void;
   unCheckNoteNameHandle(): void;
+  currentInstrumentIndex: number;
+  selectInstrumentOptions: OptionType[];
+  handleInstrumentSelection(event: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
 const ControlPanel: React.FC<ControlPanelProperties> = ({
@@ -28,6 +33,9 @@ const ControlPanel: React.FC<ControlPanelProperties> = ({
   showNoteName,
   checkNoteNameHandle,
   unCheckNoteNameHandle,
+  currentInstrumentIndex,
+  selectInstrumentOptions,
+  handleInstrumentSelection,
 }) => {
   return (
     <>
@@ -54,6 +62,13 @@ const ControlPanel: React.FC<ControlPanelProperties> = ({
             checked={showOctave}
             checkHandle={checkOctaveHandle}
             unCheckHandle={unCheckOctaveHandle}
+          />
+          <Selector
+            label={'Change Instrument'}
+            name={'instrumentSelector'}
+            currentValue={currentInstrumentIndex}
+            options={selectInstrumentOptions}
+            onChange={handleInstrumentSelection}
           />
           <button onClick={hidePanel} className={'btn'}>
             Close Panel

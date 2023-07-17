@@ -9,12 +9,19 @@ import {
   AllScaleModeSelections,
   AllScaleNoteSelections,
 } from './constants/Scales';
-import { StandardGuitar } from './constants/Guitars';
+import {
+  AllInstruments,
+  AllInstrumentSelections,
+} from './constants/Instruments';
 import './index.scss';
 import ScaleSelector from './components/ScaleSelector/ScaleSelector';
 import { AllScaleTypes } from './constants/ScaleInvervals';
 
 const App = () => {
+  const [currentInstrumentIndex, setCurrentInstrumentIndex] = React.useState(0);
+  const [currentInstrument, setCurrentInstrument] = React.useState(
+    AllInstruments[currentInstrumentIndex]
+  );
   const [scaleIndex, setScaleIndex] = React.useState(0);
   const [currentScale, setCurrentScale] = React.useState(AllScales[scaleIndex]);
   const [currentRootNoteIndex, setCurrentRootNoteIndex] = React.useState(0);
@@ -35,6 +42,13 @@ const App = () => {
     setCurrentModeIndex(event.target.value as unknown as number);
   };
 
+  const handleInstrumentSelection = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    event.preventDefault();
+    setCurrentInstrumentIndex(event.target.value as unknown as number);
+  };
+
   React.useEffect(() => {
     const findScale = AllScales.filter(
       (scale) =>
@@ -48,12 +62,15 @@ const App = () => {
         setCurrentScale(AllScales[scaleIndex]);
       }
     });
+    setCurrentInstrument(AllInstruments[currentInstrumentIndex]);
   }, [
     currentModeIndex,
     currentRootNoteIndex,
     currentScale,
     scaleIndex,
     isPanelShowing,
+    currentInstrumentIndex,
+    currentInstrument,
   ]);
 
   return (
@@ -73,6 +90,9 @@ const App = () => {
           showNoteName={isNoteNameShowing}
           checkNoteNameHandle={checkNoteName}
           unCheckNoteNameHandle={uncheckNoteName}
+          handleInstrumentSelection={handleInstrumentSelection}
+          currentInstrumentIndex={currentInstrumentIndex}
+          selectInstrumentOptions={AllInstrumentSelections}
         />
       </div>
       <div
@@ -96,16 +116,22 @@ const App = () => {
           handleNoteSelection={handleNoteSelection}
         />
       </div>
-      <ScaleDisplay scale={currentScale} isShowing={isScaleShowing} />
+      <ScaleDisplay
+        scale={currentScale}
+        isShowing={isScaleShowing}
+        currentInstrumentName={
+          AllInstruments[currentInstrumentIndex].displayName
+        }
+      />
       <Neck
-        tuning={StandardGuitar.stringTuning}
-        fretCount={StandardGuitar.fretStepCount}
+        tuning={currentInstrument.stringTuning}
+        fretCount={currentInstrument.fretStepCount}
         neckStrings={[]}
         scale={currentScale}
         showOctave={isOctaveShowing}
         showNoteName={isNoteNameShowing}
         newMarkers={
-          StandardGuitar.neckMarkers ? StandardGuitar.neckMarkers : []
+          currentInstrument.neckMarkers ? currentInstrument.neckMarkers : []
         }
       />
     </div>
