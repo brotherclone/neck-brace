@@ -29,8 +29,6 @@ const App = () => {
   const [isScaleShowing, checkScale, uncheckScale] = useToggleState(false);
   const [isOctaveShowing, checkOctave, uncheckOctave] = useToggleState(true);
   const [isPanelShowing, showPanel, hidePanel] = useToggleState(false);
-  const [isNoteNameShowing, checkNoteName, uncheckNoteName] =
-    useToggleState(true);
 
   const handleNoteSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     event.preventDefault();
@@ -74,6 +72,20 @@ const App = () => {
   ]);
 
   return (
+      <div className={'three-column-wrapper'}>
+        <div className={'mini-brace-container'}>
+          <Neck
+              tuning={currentInstrument.stringTuning}
+              fretCount={currentInstrument.fretStepCount}
+              neckStrings={[]}
+              scale={currentScale}
+              showOctave={isOctaveShowing}
+              isMini={true}
+              newMarkers={
+                currentInstrument.neckMarkers ? currentInstrument.neckMarkers : []
+              }
+          />
+        </div>
     <div className={'neck-brace-container'}>
       <div
         className={`slide-out-container ${isPanelShowing ? 'extended' : ''}`}
@@ -87,9 +99,6 @@ const App = () => {
           showOctave={isOctaveShowing}
           checkOctaveHandle={checkOctave}
           unCheckOctaveHandle={uncheckOctave}
-          showNoteName={isNoteNameShowing}
-          checkNoteNameHandle={checkNoteName}
-          unCheckNoteNameHandle={uncheckNoteName}
           handleInstrumentSelection={handleInstrumentSelection}
           currentInstrumentIndex={currentInstrumentIndex}
           selectInstrumentOptions={AllInstrumentSelections}
@@ -129,12 +138,16 @@ const App = () => {
         neckStrings={[]}
         scale={currentScale}
         showOctave={isOctaveShowing}
-        showNoteName={isNoteNameShowing}
+        isMini={false}
         newMarkers={
           currentInstrument.neckMarkers ? currentInstrument.neckMarkers : []
         }
       />
     </div>
+        <div className={'piano-brace-container'}>
+          hi
+        </div>
+      </div>
   );
 };
 

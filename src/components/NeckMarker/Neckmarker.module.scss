@@ -1,25 +1,50 @@
 @import "../../styles/Pallette.module";
 @import "../../styles/Constants.module";
-.neck-marker-collection{
+
+
+.neck-marker-collection, .mini-neck-marker-collection {
   display: flex;
   flex-direction: row;
-  height: 4.938rem;
-  width: $neck-width;
   justify-content: center;
   align-items: center;
   border: 1px solid transparent;
+  &:nth-child(1){
+    background-color: transparent;
+  }
+}
+
+.neck-marker-collection {
+  height: 4.938rem;
+  width: $neck-width;
   background-color: $jaguar;
   &:nth-child(1){
     height: 3.1rem;
-    background-color: transparent;
   }
   .neck-marker{
     background-color: $gray-anne;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 2rem;
+    height: $dot-size;
+    width:  $dot-size;
+    border-radius:  $dot-size;
     &:nth-child(2){
       margin-left: 8.2rem;
+    }
+  }
+}
+
+.mini-neck-marker-collection{
+  height: 2rem;
+  width: $mini-neck-width;
+  background-color: $gray-anne;
+  &:nth-child(1){
+    height: 0.75rem;
+  }
+  .neck-marker{
+    background-color: $green-anne;
+    height: $mini-dot-size;
+    width: $mini-dot-size;
+    border-radius: $mini-dot-size;
+    &:nth-child(2){
+      margin-left: 4rem;
     }
   }
 }

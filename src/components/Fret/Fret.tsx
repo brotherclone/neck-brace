@@ -8,23 +8,21 @@ interface FretProperties {
   fretInfo: FretInfo;
   scale: Scale;
   showOctave: boolean;
-  showNoteName: boolean;
+  isMini: boolean;
 }
 
 const Fret: React.FC<FretProperties> = ({
   fretInfo,
   scale,
   showOctave,
-  showNoteName,
+  isMini,
 }) => {
   const [fretDisplay, setFretDisplay] = React.useState('fret-label-container');
   function displayLabel() {
     let label: string;
-    if (showOctave && showNoteName) {
+    if (showOctave && !isMini) {
       label = `${fretInfo.pitchClass.aliases[0]}, ${fretInfo.octave}`;
-    } else if (showOctave && !showNoteName) {
-      label = `${fretInfo.octave}`;
-    } else if (!showOctave && showNoteName) {
+    } else if (!showOctave && !isMini) {
       label = `${fretInfo.pitchClass.aliases[0]}`;
     } else {
       label = '';
@@ -54,7 +52,7 @@ const Fret: React.FC<FretProperties> = ({
   }, [fretInfo.scaleInfo, fretInfo.fretNumber, scale.notes]);
 
   return (
-    <div className={'fret-container'}>
+    <div className={isMini ? 'fret-container-mini' : 'fret-container'}>
       <div className={fretDisplay}>
         <div className={'fret-label'} aria-label={fretInfo.fretName}>
           {displayLabel()}

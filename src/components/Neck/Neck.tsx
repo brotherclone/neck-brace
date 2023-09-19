@@ -13,8 +13,8 @@ interface NeckProperties {
   fretCount: number;
   scale: Scale;
   showOctave: boolean;
-  showNoteName: boolean;
   newMarkers: NeckMarkerType[];
+  isMini: boolean;
 }
 
 const Neck: React.FC<NeckProperties> = ({
@@ -23,8 +23,8 @@ const Neck: React.FC<NeckProperties> = ({
   neckStrings,
   scale,
   showOctave,
-  showNoteName,
   newMarkers,
+  isMini
 }) => {
   React.useEffect(() => {
     neckStrings.forEach((string) => {
@@ -44,10 +44,10 @@ const Neck: React.FC<NeckProperties> = ({
     });
   }
   return (
-    <div className={'neck-container'}>
+    <div className={isMini ? 'neck-container-mini': 'neck-container'}>
       <div className={'neck-background'}>
         {newMarkers?.map((m, index) => {
-          return <NeckMarker marks={m.marks} key={index} />;
+          return <NeckMarker marks={m.marks} key={index} isMini={isMini}/>;
         })}
       </div>
       <div className={'neck-strings'}>
@@ -59,7 +59,7 @@ const Neck: React.FC<NeckProperties> = ({
               key={index}
               scale={scale}
               showOctave={showOctave}
-              showNoteName={showNoteName}
+              isMini={isMini}
             />
           );
         })}
