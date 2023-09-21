@@ -24,7 +24,7 @@ const Neck: React.FC<NeckProperties> = ({
   scale,
   showOctave,
   newMarkers,
-  isMini
+  isMini,
 }) => {
   React.useEffect(() => {
     neckStrings.forEach((string) => {
@@ -44,10 +44,10 @@ const Neck: React.FC<NeckProperties> = ({
     });
   }
   return (
-    <div className={isMini ? 'neck-container-mini': 'neck-container'}>
+    <div className={isMini ? 'mini-neck-container' : 'neck-container'}>
       <div className={'neck-background'}>
         {newMarkers?.map((m, index) => {
-          return <NeckMarker marks={m.marks} key={index} isMini={isMini}/>;
+          return <NeckMarker marks={m.marks} key={index} isMini={isMini} />;
         })}
       </div>
       <div className={'neck-strings'}>

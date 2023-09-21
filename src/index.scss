@@ -9,6 +9,8 @@
 @import "components/ControlToggle/ControlToggle.module";
 @import "components/TogglePanelButton/TogglePanelButton.modules";
 @import "components/NeckMarker/Neckmarker.module";
+@import "components/Keyboard/Keyboard.module";
+@import "components/KeyboardKey/KeyboardKey.module";
 @import "styles/Pallette.module";
 
 html, body{
@@ -24,18 +26,15 @@ html, body{
   justify-content: space-around;
 }
 
-.piano-brace-container{
+.mini-brace-container, .piano-brace-container{
   display: flex;
+  top: 20px;
+  position: sticky;
   flex-direction: column;
   justify-content: start;
   align-content: center;
-}
-
-.mini-brace-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-content: center;
+  margin-top: calc(100vh/4);
+  height: 400px;
 }
 .neck-brace-container{
   display: flex;
@@ -52,7 +51,6 @@ html, body{
     border-right: 1px solid $gray-anne;
     border-left: 1px solid $gray-anne;
     border-bottom: 1px solid $gray-anne;
-
     &.extended{
       top: 0;
     }

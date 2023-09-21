@@ -32,19 +32,19 @@
 }
 
 .mini-neck-marker-collection{
-  height: 2rem;
+  height: 0.975rem;
   width: $mini-neck-width;
-  background-color: $gray-anne;
+  background-color: $soft-wheat;
   &:nth-child(1){
-    height: 0.75rem;
+    height: 1rem;
   }
   .neck-marker{
-    background-color: $green-anne;
+    background-color: darken($soft-wheat, 30%);
     height: $mini-dot-size;
     width: $mini-dot-size;
     border-radius: $mini-dot-size;
     &:nth-child(2){
-      margin-left: 4rem;
+      margin-left: 1.7rem;
     }
   }
 }

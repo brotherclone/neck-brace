@@ -1,28 +1,28 @@
-import { Pitch } from '../interfaces/Pitch';
 import { PitchClass } from '../types/PitchClass';
 import { PitchToScaleRelationship } from '../constants/PitchToScaleRelationship';
 
-export class FretInfo implements Pitch {
+export enum KeyBoardKeyColor {
+  White = 'white',
+  Black = 'black',
+}
+
+export class KeyInfo {
+  name: string;
   pitchClass: PitchClass;
-  scaleInfo?: PitchToScaleRelationship;
   octave: number;
-  stringName: string;
-  fretNumber: number;
-  fretName: string;
+  keyColor?: KeyBoardKeyColor;
+  scaleInfo?: PitchToScaleRelationship;
   constructor(
+    name: string,
     pitchClass: PitchClass,
     octave: number,
-    stringName: string,
-    fretNumber: number,
-    fretName: string,
+    keyColor?: KeyBoardKeyColor,
     scaleInfo?: PitchToScaleRelationship
   ) {
+    this.name = name;
     this.pitchClass = pitchClass;
-    this.scaleInfo = scaleInfo;
     this.octave = octave;
-    this.stringName = stringName;
-    this.fretNumber = fretNumber;
-    this.fretName = fretName;
+    this.keyColor = keyColor ? keyColor : KeyBoardKeyColor.White;
     this.scaleInfo = scaleInfo ? scaleInfo : PitchToScaleRelationship.NotSet;
   }
 }

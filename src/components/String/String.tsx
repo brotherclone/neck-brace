@@ -17,10 +17,10 @@ const String: React.FC<StringProperties> = ({
   stringName,
   scale,
   showOctave,
-                                              isMini,
+  isMini,
 }) => {
   return (
-    <div className={isMini?'string-container-mini' : 'string-container'}>
+    <div className={isMini ? 'mini-string-container' : 'string-container'}>
       <div className={'string-container-inner'} aria-description={stringName}>
         {stringInfo.frets.map((f, index) => {
           f.stringName = stringName;

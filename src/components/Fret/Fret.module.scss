@@ -41,7 +41,6 @@
   &:nth-child(1){
     border-color: transparent;
   }
-
 }
 
 
@@ -78,17 +77,13 @@
 }
 
 .mini-fret-container{
-  min-height: 1rem;
+  min-height: 1.1rem;
   min-width: 1rem;
-  border-top: 1px solid $green-anne;
-  border-left: 1px solid $green-anne;
+  border: none;
   &:nth-child(1){
     min-height: 0.25rem;
     min-width:  0.25rem;
     margin-bottom: 0.5rem;
-  }
-  &:last-child{
-    border-bottom:1px solid $green-anne;
   }
   .fret-label-container{
     @include fret-label-helper(0.5rem);

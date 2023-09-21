@@ -1,7 +1,7 @@
 @import "../../styles/Constants.module";
 
 
-.neck-container, .mini-neck-brace{
+.neck-container, .mini-neck-container{
   .neck-strings{
     display: flex;
     flex-direction: row;
@@ -19,7 +19,7 @@
   max-width: $neck-width;
 }
 
-.mini-neck-brace{
+.mini-neck-container{
   width: 100%;
   max-width: $mini-neck-width;
 }

@@ -10,17 +10,19 @@ import {
   AllScaleNoteSelections,
 } from './constants/Scales';
 import {
-  AllInstruments,
+  AllMainInstruments,
   AllInstrumentSelections,
 } from './constants/Instruments';
 import './index.scss';
 import ScaleSelector from './components/ScaleSelector/ScaleSelector';
 import { AllScaleTypes } from './constants/ScaleInvervals';
+import Keyboard from './components/Keyboard/Keyboard';
+import referenceOneOctaveKeyboard from './constants/KeyBoards';
 
 const App = () => {
   const [currentInstrumentIndex, setCurrentInstrumentIndex] = React.useState(0);
   const [currentInstrument, setCurrentInstrument] = React.useState(
-    AllInstruments[currentInstrumentIndex]
+    AllMainInstruments[currentInstrumentIndex]
   );
   const [scaleIndex, setScaleIndex] = React.useState(0);
   const [currentScale, setCurrentScale] = React.useState(AllScales[scaleIndex]);
@@ -60,7 +62,7 @@ const App = () => {
         setCurrentScale(AllScales[scaleIndex]);
       }
     });
-    setCurrentInstrument(AllInstruments[currentInstrumentIndex]);
+    setCurrentInstrument(AllMainInstruments[currentInstrumentIndex]);
   }, [
     currentModeIndex,
     currentRootNoteIndex,
@@ -72,82 +74,85 @@ const App = () => {
   ]);
 
   return (
-      <div className={'three-column-wrapper'}>
-        <div className={'mini-brace-container'}>
-          <Neck
-              tuning={currentInstrument.stringTuning}
-              fretCount={currentInstrument.fretStepCount}
-              neckStrings={[]}
-              scale={currentScale}
-              showOctave={isOctaveShowing}
-              isMini={true}
-              newMarkers={
-                currentInstrument.neckMarkers ? currentInstrument.neckMarkers : []
-              }
+    <div className={'three-column-wrapper'}>
+      <div className={'mini-brace-container'}>
+        <Neck
+          tuning={currentInstrument.stringTuning}
+          fretCount={currentInstrument.fretStepCount}
+          neckStrings={[]}
+          scale={currentScale}
+          showOctave={isOctaveShowing}
+          isMini={true}
+          newMarkers={
+            currentInstrument.neckMarkers ? currentInstrument.neckMarkers : []
+          }
+        />
+      </div>
+      <div className={'neck-brace-container'}>
+        <div
+          className={`slide-out-container ${isPanelShowing ? 'extended' : ''}`}
+        >
+          <ControlPanel
+            showPanel={isPanelShowing}
+            hidePanel={hidePanel}
+            showScale={isScaleShowing}
+            checkScaleHandle={checkScale}
+            unCheckScaleHandle={uncheckScale}
+            showOctave={isOctaveShowing}
+            checkOctaveHandle={checkOctave}
+            unCheckOctaveHandle={uncheckOctave}
+            handleInstrumentSelection={handleInstrumentSelection}
+            currentInstrumentIndex={currentInstrumentIndex}
+            selectInstrumentOptions={AllInstrumentSelections}
           />
         </div>
-    <div className={'neck-brace-container'}>
-      <div
-        className={`slide-out-container ${isPanelShowing ? 'extended' : ''}`}
-      >
-        <ControlPanel
-          showPanel={isPanelShowing}
-          hidePanel={hidePanel}
-          showScale={isScaleShowing}
-          checkScaleHandle={checkScale}
-          unCheckScaleHandle={uncheckScale}
-          showOctave={isOctaveShowing}
-          checkOctaveHandle={checkOctave}
-          unCheckOctaveHandle={uncheckOctave}
-          handleInstrumentSelection={handleInstrumentSelection}
-          currentInstrumentIndex={currentInstrumentIndex}
-          selectInstrumentOptions={AllInstrumentSelections}
-        />
-      </div>
-      <div
-        className={`neck-brace-controls-container ${
-          isScaleShowing ? '' : 'no-scale-display'
-        }`}
-      >
-        <TogglePanelButton
-          buttonState={isPanelShowing}
-          turnOn={showPanel}
-          turnOff={hidePanel}
-          label={'Show Controls'}
-          name={'showPanelButton'}
-        />
-        <ScaleSelector
-          modeOptions={AllScaleModeSelections}
-          noteOptions={AllScaleNoteSelections}
-          currentModeIndex={currentModeIndex}
-          currentRootNoteIndex={currentRootNoteIndex}
-          handleModeSelection={handleModeSelection}
-          handleNoteSelection={handleNoteSelection}
-        />
-      </div>
-      <ScaleDisplay
-        scale={currentScale}
-        isShowing={isScaleShowing}
-        currentInstrumentName={
-          AllInstruments[currentInstrumentIndex].displayName
-        }
-      />
-      <Neck
-        tuning={currentInstrument.stringTuning}
-        fretCount={currentInstrument.fretStepCount}
-        neckStrings={[]}
-        scale={currentScale}
-        showOctave={isOctaveShowing}
-        isMini={false}
-        newMarkers={
-          currentInstrument.neckMarkers ? currentInstrument.neckMarkers : []
-        }
-      />
-    </div>
-        <div className={'piano-brace-container'}>
-          hi
+        <div
+          className={`neck-brace-controls-container ${
+            isScaleShowing ? '' : 'no-scale-display'
+          }`}
+        >
+          <TogglePanelButton
+            buttonState={isPanelShowing}
+            turnOn={showPanel}
+            turnOff={hidePanel}
+            label={'Show Controls'}
+            name={'showPanelButton'}
+          />
+          <ScaleSelector
+            modeOptions={AllScaleModeSelections}
+            noteOptions={AllScaleNoteSelections}
+            currentModeIndex={currentModeIndex}
+            currentRootNoteIndex={currentRootNoteIndex}
+            handleModeSelection={handleModeSelection}
+            handleNoteSelection={handleNoteSelection}
+          />
         </div>
+        <ScaleDisplay
+          scale={currentScale}
+          isShowing={isScaleShowing}
+          currentInstrumentName={
+            AllMainInstruments[currentInstrumentIndex].displayName
+          }
+        />
+        <Neck
+          tuning={currentInstrument.stringTuning}
+          fretCount={currentInstrument.fretStepCount}
+          neckStrings={[]}
+          scale={currentScale}
+          showOctave={isOctaveShowing}
+          isMini={false}
+          newMarkers={
+            currentInstrument.neckMarkers ? currentInstrument.neckMarkers : []
+          }
+        />
       </div>
+      <div className={'piano-brace-container'}>
+        <Keyboard
+          scale={currentScale}
+          keyBoardInstrument={referenceOneOctaveKeyboard}
+        />
+      </div>
+    </div>
   );
 };
 

@@ -52,7 +52,7 @@ const Fret: React.FC<FretProperties> = ({
   }, [fretInfo.scaleInfo, fretInfo.fretNumber, scale.notes]);
 
   return (
-    <div className={isMini ? 'fret-container-mini' : 'fret-container'}>
+    <div className={isMini ? 'mini-fret-container' : 'fret-container'}>
       <div className={fretDisplay}>
         <div className={'fret-label'} aria-label={fretInfo.fretName}>
           {displayLabel()}
