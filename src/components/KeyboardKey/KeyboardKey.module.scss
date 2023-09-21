@@ -1,0 +1,70 @@
+@import "./../../styles/Pallette.module.scss";
+
+$key-offset: 0.5555rem;
+
+.keyboard-keys-octave-group {
+  &:nth-child(1) {
+    margin-bottom:$key-offset * -1;
+  }
+  &:nth-child(2) {
+    margin-bottom:$key-offset * -1;
+  }
+  &:nth-child(3) {
+    margin-top:$key-offset * -1;
+  }
+  &:nth-child(4) {
+    margin-top:$key-offset * -1;
+  }
+  &:nth-child(5) {
+    margin-top:$key-offset *-1;
+  }
+  &:nth-child(6) {
+    margin-bottom:$key-offset * -1;
+  }
+  &:nth-child(7) {
+    margin-bottom:$key-offset * -1;
+  }
+  &:nth-child(8) {
+    margin-top:$key-offset *-1;
+  }
+  &:nth-child(9) {
+    margin-top:$key-offset *-1;
+  }
+  &:nth-child(10) {
+    margin-top:$key-offset *-1;
+  }
+  &:nth-child(11) {
+    margin-top:$key-offset *-1;
+  }
+  &:nth-child(12) {
+    margin-top:$key-offset *-1;
+  }
+  .keyboard-key {
+    border: 0.06rem solid black;
+    position: relative;
+    height: 1.25rem;
+    &.white {
+      z-index: 1;
+      background-color: $ivory-key;
+      width: 6rem;
+      &.chromatic{
+        background-color: $green-anne;
+      }
+      &.tonic{
+        background-color: $hot-rod-red;
+      }
+    }
+    &.black {
+      z-index: 2;
+      background-color: $ebony-key;
+      width: 3.5rem;
+      height: 1rem;
+      &.chromatic{
+        background-color: darken($green-anne, .5);
+      }
+      &.tonic{
+        background-color: darken($hot-rod-red, .5);
+      }
+    }
+  }
+}

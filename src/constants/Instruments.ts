@@ -3,7 +3,7 @@ import { StandardBassGuitar } from './BassGuitars';
 import { StringedInstrument } from '../models/StringedInstrument';
 import { OptionType } from '../types/OptionType';
 
-export const AllInstruments: StringedInstrument[] = [
+export const AllMainInstruments: StringedInstrument[] = [
   StandardGuitar,
   OpenGTunedStandardGuitar,
   StandardBassGuitar,
@@ -24,4 +24,4 @@ function createInstrumentOptions(
 }
 
 export const AllInstrumentSelections: OptionType[] =
-  createInstrumentOptions(AllInstruments);
+  createInstrumentOptions(AllMainInstruments);

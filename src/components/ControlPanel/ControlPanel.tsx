@@ -13,9 +13,6 @@ interface ControlPanelProperties {
   showOctave: boolean;
   checkOctaveHandle(): void;
   unCheckOctaveHandle(): void;
-  showNoteName: boolean;
-  checkNoteNameHandle(): void;
-  unCheckNoteNameHandle(): void;
   currentInstrumentIndex: number;
   selectInstrumentOptions: OptionType[];
   handleInstrumentSelection(event: React.ChangeEvent<HTMLSelectElement>): void;
@@ -30,9 +27,6 @@ const ControlPanel: React.FC<ControlPanelProperties> = ({
   showOctave,
   checkOctaveHandle,
   unCheckOctaveHandle,
-  showNoteName,
-  checkNoteNameHandle,
-  unCheckNoteNameHandle,
   currentInstrumentIndex,
   selectInstrumentOptions,
   handleInstrumentSelection,
@@ -48,13 +42,6 @@ const ControlPanel: React.FC<ControlPanelProperties> = ({
             checked={showScale}
             checkHandle={checkScaleHandle}
             unCheckHandle={unCheckScaleHandle}
-          />
-          <ControlToggle
-            name={'showNote'}
-            label={'Show Note Name'}
-            checked={showNoteName}
-            checkHandle={checkNoteNameHandle}
-            unCheckHandle={unCheckNoteNameHandle}
           />
           <ControlToggle
             name={'showOctave'}

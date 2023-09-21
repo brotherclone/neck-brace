@@ -4,7 +4,7 @@ import App from './App';
 
 function NeckBraceInit() {
   React.useEffect(() => {
-    console.log('rendered');
+    console.log('Here comes your neck brace!');
   });
   return <App />;
 }
