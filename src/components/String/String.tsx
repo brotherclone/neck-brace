@@ -9,7 +9,7 @@ interface StringProperties {
   stringName: string;
   scale: Scale;
   showOctave: boolean;
-  showNoteName: boolean;
+  isMini: boolean;
 }
 
 const String: React.FC<StringProperties> = ({
@@ -17,10 +17,10 @@ const String: React.FC<StringProperties> = ({
   stringName,
   scale,
   showOctave,
-  showNoteName,
+  isMini,
 }) => {
   return (
-    <div className={'string-container'}>
+    <div className={isMini ? 'mini-string-container' : 'string-container'}>
       <div className={'string-container-inner'} aria-description={stringName}>
         {stringInfo.frets.map((f, index) => {
           f.stringName = stringName;
@@ -30,7 +30,7 @@ const String: React.FC<StringProperties> = ({
               fretInfo={f}
               scale={scale}
               showOctave={showOctave}
-              showNoteName={showNoteName}
+              isMini={isMini}
             />
           );
         })}

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import ControlToggle from '../ControlToggle/ControlToggle';
+import Selector from '../Selector/Selector';
 import './ControlPanel.module.scss';
+import { OptionType } from '../../types/OptionType';
 
 interface ControlPanelProperties {
   showPanel: boolean;
@@ -11,9 +13,9 @@ interface ControlPanelProperties {
   showOctave: boolean;
   checkOctaveHandle(): void;
   unCheckOctaveHandle(): void;
-  showNoteName: boolean;
-  checkNoteNameHandle(): void;
-  unCheckNoteNameHandle(): void;
+  currentInstrumentIndex: number;
+  selectInstrumentOptions: OptionType[];
+  handleInstrumentSelection(event: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
 const ControlPanel: React.FC<ControlPanelProperties> = ({
@@ -25,9 +27,9 @@ const ControlPanel: React.FC<ControlPanelProperties> = ({
   showOctave,
   checkOctaveHandle,
   unCheckOctaveHandle,
-  showNoteName,
-  checkNoteNameHandle,
-  unCheckNoteNameHandle,
+  currentInstrumentIndex,
+  selectInstrumentOptions,
+  handleInstrumentSelection,
 }) => {
   return (
     <>
@@ -42,18 +44,18 @@ const ControlPanel: React.FC<ControlPanelProperties> = ({
             unCheckHandle={unCheckScaleHandle}
           />
           <ControlToggle
-            name={'showNote'}
-            label={'Show Note Name'}
-            checked={showNoteName}
-            checkHandle={checkNoteNameHandle}
-            unCheckHandle={unCheckNoteNameHandle}
-          />
-          <ControlToggle
             name={'showOctave'}
             label={'Show Octave Number'}
             checked={showOctave}
             checkHandle={checkOctaveHandle}
             unCheckHandle={unCheckOctaveHandle}
+          />
+          <Selector
+            label={'Change Instrument'}
+            name={'instrumentSelector'}
+            currentValue={currentInstrumentIndex}
+            options={selectInstrumentOptions}
+            onChange={handleInstrumentSelection}
           />
           <button onClick={hidePanel} className={'btn'}>
             Close Panel

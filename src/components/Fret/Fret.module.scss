@@ -31,19 +31,25 @@
   }
 }
 
-.fret-container{
+.fret-container, .mini-fret-container{
   display: flex;
   flex-direction: column;
   align-content: center;
   align-items: center;
   justify-content: center;
   justify-items: center;
+  &:nth-child(1){
+    border-color: transparent;
+  }
+}
+
+
+.fret-container{
   min-height: 5rem;
   min-width: 5rem;
   border-top: 1px solid $gray-anne;
   border-left: 1px solid $gray-anne;
   &:nth-child(1){
-    border-color: transparent;
     min-height: 1.5rem;
     min-width: 1.5rem;
     margin-bottom: 1rem;
@@ -67,5 +73,23 @@
       font-size: 0.6rem;
       font-weight: 600;
     }
+  }
+}
+
+.mini-fret-container{
+  min-height: 1.1rem;
+  min-width: 1rem;
+  border: none;
+  &:nth-child(1){
+    min-height: 0.25rem;
+    min-width:  0.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .fret-label-container{
+    @include fret-label-helper(0.5rem);
+
+  }
+  .fret-label-container-open{
+    @include fret-label-helper(0.5rem, 1px solid $gray-anne);
   }
 }

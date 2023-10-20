@@ -1,9 +1,13 @@
 @import "../../styles/Pallette.module";
 @import "../../styles/Constants.module";
-.string-container{
-  width: $neck-width;
+
+.string-container, .mini-string-container{
   display: flex;
   flex-direction: column;
+}
+
+.string-container{
+  width: $neck-width;
   &:last-of-type{
     .string-container-inner{
       .fret-container{
@@ -13,8 +17,17 @@
       }
     }
   }
-  .string-inner{
-    .string-name{
+}
+
+.mini-string-container{
+  width: $mini-neck-width;
+  &:last-of-type{
+    .string-container-inner{
+      .fret-container{
+        &:not(:nth-of-type(1)){
+          border-right: 1px solid $crate;
+        }
+      }
     }
   }
 }

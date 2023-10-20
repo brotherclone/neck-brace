@@ -15,10 +15,14 @@
 
 .btn {
   color:white;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   text-decoration:none;
-  padding:0.313rem 0.625rem 1.33rem 0.625rem;
   border-radius:0.031rem;
   height: 2rem;
+  line-height: 2.25rem;
+  padding: 1rem 0 0.75rem 0;
   border: 0.313rem solid transparent;
   box-shadow: 0.031rem 0.031rem transparentize($aside-text-grey, 0.9);
   font-family: $main-font-family;

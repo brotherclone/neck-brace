@@ -6,7 +6,12 @@
   flex-direction: row;
   justify-content: center;
   width: $neck-width;
-   margin:0 0 0.75rem;
+  margin: 0 0 0.75rem;
+  align-items: baseline;
+  .current-instrument-name{
+    @include header-text();
+    font-size: 0.75rem;
+  }
   .scale-display-note{
     margin: 0.25rem;
     @include aside-text();

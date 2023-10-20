@@ -2,7 +2,7 @@ import { StringedInstrument } from '../models/StringedInstrument';
 import { Pitches } from './Pitches';
 import { Hand, InstrumentOrientation, PolyPhonicPlayMode } from './PlayMode';
 
-const baseGuitar = new StringedInstrument(
+const standardGuitar = new StringedInstrument(
   'Standard Guitar',
   [
     {
@@ -123,51 +123,56 @@ const baseGuitar = new StringedInstrument(
   ]
 );
 
-const openG = baseGuitar;
-openG.displayName = 'Open G Tuning';
-openG.stringTuning = [
-  {
-    octave: 2,
-    pitchClass: Pitches[2],
-    stringName: 'Lowest D, Open G Tuning',
-    fretNumber: 0,
-    fretName: 'Open',
-  },
-  {
-    octave: 2,
-    pitchClass: Pitches[7],
-    stringName: 'Low G, Open G Tuning',
-    fretNumber: 0,
-    fretName: 'Open',
-  },
-  {
-    octave: 3,
-    pitchClass: Pitches[2],
-    stringName: 'Middle D, Open G Tuning',
-    fretNumber: 0,
-    fretName: 'Open',
-  },
-  {
-    octave: 3,
-    pitchClass: Pitches[7],
-    stringName: 'High G, Open G Tuning',
-    fretNumber: 0,
-    fretName: 'Open',
-  },
-  {
-    octave: 3,
-    pitchClass: Pitches[11],
-    stringName: 'B, Open G Tuning',
-    fretNumber: 0,
-    fretName: 'Open',
-  },
-  {
-    octave: 4,
-    pitchClass: Pitches[2],
-    stringName: 'High D, Open G Tuning',
-    fretNumber: 0,
-    fretName: 'Open',
-  },
-];
-export const StandardGuitar = baseGuitar;
+const openG = new StringedInstrument(
+  'Open G Guitar',
+  standardGuitar.playModes,
+  standardGuitar.fretStepCount,
+  [
+    {
+      octave: 2,
+      pitchClass: Pitches[2],
+      stringName: 'Lowest D, Open G Tuning',
+      fretNumber: 0,
+      fretName: 'Open',
+    },
+    {
+      octave: 2,
+      pitchClass: Pitches[7],
+      stringName: 'Low G, Open G Tuning',
+      fretNumber: 0,
+      fretName: 'Open',
+    },
+    {
+      octave: 3,
+      pitchClass: Pitches[2],
+      stringName: 'Middle D, Open G Tuning',
+      fretNumber: 0,
+      fretName: 'Open',
+    },
+    {
+      octave: 3,
+      pitchClass: Pitches[7],
+      stringName: 'High G, Open G Tuning',
+      fretNumber: 0,
+      fretName: 'Open',
+    },
+    {
+      octave: 3,
+      pitchClass: Pitches[11],
+      stringName: 'B, Open G Tuning',
+      fretNumber: 0,
+      fretName: 'Open',
+    },
+    {
+      octave: 4,
+      pitchClass: Pitches[2],
+      stringName: 'High D, Open G Tuning',
+      fretNumber: 0,
+      fretName: 'Open',
+    },
+  ],
+  standardGuitar.instrumentOrientation,
+  standardGuitar.neckMarkers
+);
+export const StandardGuitar = standardGuitar;
 export const OpenGTunedStandardGuitar = openG;

@@ -1,7 +1,7 @@
 @import "../../styles/Constants.module";
-.neck-container{
-  width: 100%;
-  max-width: $neck-width;
+
+
+.neck-container, .mini-neck-container{
   .neck-strings{
     display: flex;
     flex-direction: row;
@@ -12,4 +12,14 @@
     position: absolute;
     z-index: -1;
   }
+}
+
+.neck-container{
+  width: 100%;
+  max-width: $neck-width;
+}
+
+.mini-neck-container{
+  width: 100%;
+  max-width: $mini-neck-width;
 }
