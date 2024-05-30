@@ -87,7 +87,6 @@
   }
   .fret-label-container{
     @include fret-label-helper(0.5rem);
-
   }
   .fret-label-container-open{
     @include fret-label-helper(0.5rem, 1px solid $gray-anne);

@@ -11,6 +11,7 @@ interface KeyBoardKeyProperties {
 const KeyBoardKey: React.FC<KeyBoardKeyProperties> = ({ scale, keyInfo }) => {
   const [keyDisplay, setKeyDisplay] = React.useState('');
   React.useEffect(() => {
+    console.log(keyInfo);
     let className = 'keyboard-key';
     if (keyInfo.keyColor === KeyBoardKeyColor.White) {
       className += ' white';
@@ -19,7 +20,7 @@ const KeyBoardKey: React.FC<KeyBoardKeyProperties> = ({ scale, keyInfo }) => {
     }
     if (keyInfo.scaleInfo === PitchToScaleRelationship.Tonic) {
       className += ' tonic';
-    } else if (keyInfo.scaleInfo === PitchToScaleRelationship.Chromatic) {
+    } else {
       className += ' chromatic';
     }
     setKeyDisplay(className);
