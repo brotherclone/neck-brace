@@ -24,11 +24,9 @@ export class StringInfo {
     this.name = name;
     this.openNote = openNote;
   }
-
   buildString() {
     let pitchTracker = this.openNote.pitchClass.integerNotation;
     let octaveTracker = this.openNote.octave;
-    this.frets.push(this.openNote);
     if (!this.built) {
       for (let i = 1; i < this.fretCount; i++) {
         if (pitchTracker + 1 < Pitches.length) {
@@ -43,6 +41,8 @@ export class StringInfo {
           fretName: `${this.name} - Fret ${i}`,
           fretNumber: i,
           stringName: this.name,
+          hidden: false,
+          //hidden: this.openNote.fretNumber > 0 && i < this.openNote.fretNumber,
         };
         this.frets.push(newFret);
       }

@@ -30,23 +30,27 @@ const Fret: React.FC<FretProperties> = ({
     return <>{label}</>;
   }
   React.useEffect(() => {
-    if (fretInfo.fretNumber === 0) {
-      setFretDisplay('fret-label-container-open');
-      if (fretInfo.scaleInfo === PitchToScaleRelationship.NotSet) {
-        setFretDisplay('fret-label-container-open unset');
-      } else if (fretInfo.scaleInfo === PitchToScaleRelationship.Tonic) {
-        setFretDisplay('fret-label-container-open tonic');
-      } else if (fretInfo.scaleInfo === PitchToScaleRelationship.Chromatic) {
-        setFretDisplay('fret-label-container-open chromatic');
-      }
+    if (fretInfo.hidden) {
+      setFretDisplay('fret-label-container short-hidden');
     } else {
-      setFretDisplay('fret-label-container');
-      if (fretInfo.scaleInfo === PitchToScaleRelationship.NotSet) {
-        setFretDisplay('fret-label-container unset');
-      } else if (fretInfo.scaleInfo === PitchToScaleRelationship.Tonic) {
-        setFretDisplay('fret-label-container tonic');
-      } else if (fretInfo.scaleInfo === PitchToScaleRelationship.Chromatic) {
-        setFretDisplay('fret-label-container chromatic');
+      if (fretInfo.fretNumber === 0) {
+        setFretDisplay('fret-label-container-open');
+        if (fretInfo.scaleInfo === PitchToScaleRelationship.NotSet) {
+          setFretDisplay('fret-label-container-open unset');
+        } else if (fretInfo.scaleInfo === PitchToScaleRelationship.Tonic) {
+          setFretDisplay('fret-label-container-open tonic');
+        } else if (fretInfo.scaleInfo === PitchToScaleRelationship.Chromatic) {
+          setFretDisplay('fret-label-container-open chromatic');
+        }
+      } else {
+        setFretDisplay('fret-label-container');
+        if (fretInfo.scaleInfo === PitchToScaleRelationship.NotSet) {
+          setFretDisplay('fret-label-container unset');
+        } else if (fretInfo.scaleInfo === PitchToScaleRelationship.Tonic) {
+          setFretDisplay('fret-label-container tonic');
+        } else if (fretInfo.scaleInfo === PitchToScaleRelationship.Chromatic) {
+          setFretDisplay('fret-label-container chromatic');
+        }
       }
     }
   }, [fretInfo.scaleInfo, fretInfo.fretNumber, scale.notes]);

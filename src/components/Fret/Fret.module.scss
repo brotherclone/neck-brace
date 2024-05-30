@@ -43,7 +43,6 @@
   }
 }
 
-
 .fret-container{
   min-height: 5rem;
   min-width: 5rem;
@@ -59,12 +58,18 @@
   }
   .fret-label-container{
     @include fret-label-helper(2rem);
+    .short-hidden{
+      .fret-label{
+        display: none;
+      }
+    }
     .fret-label{
       color: $gray-anne;
       @include header-text();
       font-size: 0.6rem;
     }
   }
+
   .fret-label-container-open{
     @include fret-label-helper(2rem, 1px solid $gray-anne);
     .fret-label{
