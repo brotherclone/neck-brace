@@ -9,6 +9,7 @@ export class FretInfo implements Pitch {
   stringName: string;
   fretNumber: number;
   fretName: string;
+  hidden?: boolean;
   constructor(
     pitchClass: PitchClass,
     octave: number,

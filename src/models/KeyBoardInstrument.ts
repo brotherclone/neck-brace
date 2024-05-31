@@ -24,7 +24,7 @@ export class KeyBoardInstrument implements Instrument {
     this.keys = [];
   }
   buildKeys() {
-    let pitchTracker = this.startingPitch.integerNotation;
+    let pitchTracker = this.startingPitch.integerNotation - 1;
     let octaveTracker = this.octaveCount;
     if (!this.built) {
       for (let i = 0; i < 12; i++) {

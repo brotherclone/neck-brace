@@ -10,6 +10,7 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "start": "webpack serve --port 3000",
     "build": "NODE_ENV=production webpack",
     "prepare": "husky install"

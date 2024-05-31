@@ -18,6 +18,7 @@ const Fret: React.FC<FretProperties> = ({
   isMini,
 }) => {
   const [fretDisplay, setFretDisplay] = React.useState('fret-label-container');
+  const [fretContainer, setFretContainer] = React.useState('fret-container');
   function displayLabel() {
     let label: string;
     if (showOctave && !isMini) {
@@ -30,6 +31,16 @@ const Fret: React.FC<FretProperties> = ({
     return <>{label}</>;
   }
   React.useEffect(() => {
+    let fretContainerClass: string;
+    if (isMini) {
+      fretContainerClass = 'mini-fret-container';
+    } else {
+      fretContainerClass = 'fret-container';
+    }
+    if (fretInfo.hidden) {
+      fretContainerClass += '-hidden';
+    }
+    setFretContainer(fretContainerClass);
     if (fretInfo.fretNumber === 0) {
       setFretDisplay('fret-label-container-open');
       if (fretInfo.scaleInfo === PitchToScaleRelationship.NotSet) {
@@ -49,10 +60,16 @@ const Fret: React.FC<FretProperties> = ({
         setFretDisplay('fret-label-container chromatic');
       }
     }
-  }, [fretInfo.scaleInfo, fretInfo.fretNumber, scale.notes]);
+  }, [
+    fretInfo.hidden,
+    isMini,
+    fretInfo.scaleInfo,
+    fretInfo.fretNumber,
+    scale.notes,
+  ]);
 
   return (
-    <div className={isMini ? 'mini-fret-container' : 'fret-container'}>
+    <div className={fretContainer}>
       <div className={fretDisplay}>
         <div className={'fret-label'} aria-label={fretInfo.fretName}>
           {displayLabel()}

@@ -48,10 +48,10 @@ $key-offset: 0.5555rem;
       background-color: $ivory-key;
       width: 6rem;
       &.chromatic{
-        background-color: $green-anne;
+        background-color: $hot-rod-red;
       }
       &.tonic{
-        background-color: $hot-rod-red;
+        background-color: $green-anne;
       }
     }
     &.black {
@@ -60,10 +60,10 @@ $key-offset: 0.5555rem;
       width: 3.5rem;
       height: 1rem;
       &.chromatic{
-        background-color: darken($green-anne, .5);
+        background-color: darken($hot-rod-red, .5);
       }
       &.tonic{
-        background-color: darken($hot-rod-red, .5);
+        background-color: darken($green-anne, .5);
       }
     }
   }

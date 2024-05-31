@@ -43,31 +43,45 @@
   }
 }
 
+.fret-container-hidden{
+  min-height: 5rem;
+  min-width: 5rem;
+  border-width: 1px 0 0 1px;
+  background-color: $soft-wheat;
+  .fret-label-container, .fret-label-container-open{
+    display: none;
+  }
+  &:nth-child(1) {
+    min-height: 1.5rem;
+    min-width: 1.5rem;
+    margin-bottom: 2.125rem;
+  }
+}
 
-.fret-container{
+.fret-container {
   min-height: 5rem;
   min-width: 5rem;
   border-top: 1px solid $gray-anne;
   border-left: 1px solid $gray-anne;
-  &:nth-child(1){
+  &:nth-child(1) {
     min-height: 1.5rem;
     min-width: 1.5rem;
     margin-bottom: 1rem;
   }
-  &:last-child{
-    border-bottom:1px solid $gray-anne;
+  &:last-child {
+    border-bottom: 1px solid $gray-anne;
   }
-  .fret-label-container{
+  .fret-label-container {
     @include fret-label-helper(2rem);
-    .fret-label{
+    .fret-label {
       color: $gray-anne;
       @include header-text();
       font-size: 0.6rem;
     }
   }
-  .fret-label-container-open{
+  .fret-label-container-open {
     @include fret-label-helper(2rem, 1px solid $gray-anne);
-    .fret-label{
+    .fret-label {
       color: $gray-anne;
       @include header-text();
       font-size: 0.6rem;
@@ -76,10 +90,24 @@
   }
 }
 
+.mini-fret-container-hidden {
+  min-height: 1.1rem;
+  min-width: 1rem;
+  border: none;
+
+  &:nth-child(1) {
+    min-height: 0.25rem;
+    min-width: 0.25rem;
+    margin-bottom: 0.875rem;
+  }
+}
+
+
 .mini-fret-container{
   min-height: 1.1rem;
   min-width: 1rem;
   border: none;
+  background-color: $soft-wheat;
   &:nth-child(1){
     min-height: 0.25rem;
     min-width:  0.25rem;
@@ -87,9 +115,10 @@
   }
   .fret-label-container{
     @include fret-label-helper(0.5rem);
-
   }
   .fret-label-container-open{
     @include fret-label-helper(0.5rem, 1px solid $gray-anne);
   }
 }
+
+
