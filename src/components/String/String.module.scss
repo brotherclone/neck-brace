@@ -8,6 +8,14 @@
 
 .string-container{
   width: $neck-width;
+
+    .string-container-inner.shortened{
+     background: $soft-wheat;
+      .fret-container{
+        background: $jaguar;
+      }
+    }
+
   &:last-of-type{
     .string-container-inner{
       .fret-container{

@@ -60,6 +60,7 @@ const Neck: React.FC<NeckProperties> = ({
               scale={scale}
               showOctave={showOctave}
               isMini={isMini}
+              isShortened={s.openNote.fretNumber !== 0}
             />
           );
         })}
